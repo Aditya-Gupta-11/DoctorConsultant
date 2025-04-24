@@ -53,13 +53,12 @@
                var experience=document.getElementById("dexp").value;
                var educ=document.getElementById("deduc").value;
                
-               alert(speciality)
+             
                var formdata=new FormData();
                formdata.append("name",name);
                formdata.append("contact",contact);
                formdata.append("email",email);
-               formdata.append("password",password);
-               formdata.append("confpass",confpass);
+             
                formdata.append("speciality",speciality);
                formdata.append("city",city);
                formdata.append("latitude",latitude);
@@ -70,9 +69,9 @@
                formdata.append("desc",desc);
                formdata.append("experience",experience);
                formdata.append("educ",educ);
-               formdata.append("photo",photo);
+              
                
-               var url="/adddoctor";
+               var url="/editdetail";
                
                fetch(url,{method:"POST", body:formdata})
                        .then(response => response.text())
@@ -83,9 +82,9 @@
                 if(ans === "Success")
                 {
                   
-                    alert("Request Send Successfully");
+                    alert("Updated Successfully");
                 }
-                if(ans==="Failed")
+                if(ans==="failed")
                 {
                     alert("Request already Exist");
                 }
@@ -113,21 +112,141 @@
                 
                 var s="";
                 s += `<option id="d1">Choose Your Speciality</option>`;
-                                        for (var i = 0; i < arr.length; i++) {
-                                            s += `<option value="${arr[i].id}">`;
-                                            s += arr[i].sname;
-                                            s += `</option>`;
-                                        }
+                for (var i = 0; i < arr.length; i++) {
+                    s += `<option value="${arr[i].id}">`;
+                    s += arr[i].sname;
+                    s += `</option>`;
+                }
                 
                 
-                document.getElementById("speciality").innerHTML=s;
+                
             }
+            function showdetail()
+            {
+                var url="/showdetail";
+                fetch(url,{method:"POST"})
+                       .then(response => response.text())
+                       .then(ans2 => renderAsDetail(ans2)); 
+                
+            }
+            function renderAsDetail(ans2)
+            {
+                console.log(ans2);
+                var mainobj=JSON.parse(ans2);
+                var arr=mainobj["ans"];
+                
+                console.log(arr);
+                var s="";
+                for(var i=0;i<arr.length;i++)
+                {
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>Name</label>';
+                    s+=`<input type="text" class="form-control" id="name" value ="${arr[0].dname}"placeholder="Name">`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>Contact</label>';
+                    s+=`<input type="text" class="form-control" id="contact" value="${arr[0].dcontact}" placeholder="Contact">`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>E-mail</label>';
+                    s+=`<input type="email" class="form-control" disabled id="em" value ="${arr[0].demail}"placeholder="Your Email">`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group" >';
+                    s+='<label>Speciality</label>';
+                    s+=`<input type="text" disabled class="form-control "value ="${arr[0].dspecialityname}" id="speciality">`;
+                   
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';                    
+                    s+='<div class="form-group">';
+                    s+='<label>City</label>';
+                    s+=`<input type="text" class="form-control"  id="city" value ="${arr[0].dcity}" placeholder="City">`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>Latitude</label>';
+                    s+=`<input type="text" class="form-control" id="latitude" value ="${arr[0].dlatitude}"placeholder="Latitude">`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>Longitude</label>';
+                    s+=`<input type="text" class="form-control" id="longitude" value ="${arr[0].dlongitude}" placeholder="Longitude">`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>Start_Time</label>';
+                    s+=`<input type="text" class="form-control" id="start_time" value ="${arr[0].dstart_time}"placeholder="Start_Time">`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>End_Time</label>';
+                    s+=`<input type="text" class="form-control" id="end_time" value ="${arr[0].dend_time}"placeholder="End_Time">`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>Slot_Amount</label>';
+                    s+=`<input type="text" class="form-control" id="slot_amount"value ="${arr[0].dslot_amount}" placeholder="Slot_Amount">`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>Description</label>';
+                    s+=`<textarea  name="Doctor Description" id="ddesc" placeholder="Doctor Description " class="form-control" rows="5" cols="55">${arr[0].ddesc}</textarea>`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-6">';
+                    s+='<div class="form-group">';
+                    s+='<label>Experience</label>';
+                    s+=`<textarea  name="Doctor Experience" id="dexp" placeholder="Doctor Experience " class="form-control" rows="5" cols="55">${arr[0].dexperience}</textarea>`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-12">';
+                    s+='<div class="form-group">';
+                    s+='<label>Education</label>';
+                    s+=`<textarea  name="Doctor Education " id ="deduc" placeholder="Doctor Education " class="form-control"  rows="5" cols="55">${arr[0].deducation}</textarea>`;
+                    s+='</div>';
+                    s+='</div>';
+                    
+                    s+='<div class="col-lg-12">';
+                    s+='<div class="text-center">';
+                    s+=`<button type="button" class="btn signup-btn" onclick="editdetail()">Confirm</button>`;
+                    s+='</div>';
+                    s+='</div>';
 
+                    
+                }
+                 document.getElementById("showdetail").innerHTML=s;
+               
+            }
         </script>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body onload="specialitylist()">
+    <body onload="specialitylist(),showdetail()">
 
         <!-- Preloader -->
         <div class="loader">
@@ -333,7 +452,7 @@
         <!-- Sign Up -->
         <div class="signup-area">
             <div class="container-fluid">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" >
                     <div class="col-lg-6 pl-0">
                         <div class="signup-left">
                             <img src="assets/img/signup-bg.jpg" alt="SignUp">
@@ -343,14 +462,11 @@
                     <div class="col-lg-6 ptb-100">
                         <div class="signup-item">
                             <div class="signup-head">
-                                <h2>Edit Detail</h2>
-                                <p>Already have an account? 
-                                    <a href="#">Log In</a>
-                                </p>
+                                <h2>Edit Detail</h2>                           
                             </div>
                             <div class="signup-form">
                                 <form>
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center"id="showdetail">
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Name</label>
@@ -370,12 +486,12 @@
                                                 <input type="email" class="form-control" id="em" placeholder="Your Email">
                                             </div>
                                         </div>
-                                        
+                                        <div class="col-lg-6">
                                         <div class="form-group" >
                                             <label>Speciality</label>
                                             <select class="form-control" id="speciality" >
                                                    </select>
-                                            
+                                        </div>
                                                 
                                                
                                             </div>
@@ -430,26 +546,17 @@
                                                 <textarea  name="Doctor Experience" id="dexp" placeholder="Doctor Experience " class="form-control" rows="5" cols="55"></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label>Education</label>
                                                 <textarea  name="Doctor Education " id ="deduc" placeholder="Doctor Education " class="form-control" rows="5" cols="55"></textarea>
                                             </div>
                                         </div>
                                         
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                    <label class="form-check-label" for="gridCheck">
-                                                        Yes, I agree with all <a href="#">Terms & Conditions</a>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       
                                         <div class="col-lg-12">
                                             <div class="text-center">
-                                                <button type="button" class="btn signup-btn" onclick="editdetail()">Edit Detail</button>
+                                                <button type="button" class="btn signup-btn" onclick="editdetail()">Confirm</button>
                                             </div>
                                         </div>
                                     </div>

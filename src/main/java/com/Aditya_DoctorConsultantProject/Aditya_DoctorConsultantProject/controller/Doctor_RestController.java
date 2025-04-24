@@ -140,9 +140,10 @@ public class Doctor_RestController
         
     }
     @PostMapping("/showphoto")
-    public String showphoto()
+    public String showphoto(HttpSession session)
     {
-        String ans=new RDBMS_TO_JSON().generateJSON("select * from photo");
+        Integer id=(Integer)session.getAttribute("did");
+        String ans=new RDBMS_TO_JSON().generateJSON("select * from photo where did='"+id+"'");
         return ans;
     }
     @GetMapping("/deletephoto")
@@ -168,6 +169,58 @@ public class Doctor_RestController
         }
         return "exception";
     }
-    
+    @PostMapping("/showdetail")
+    public String showdetail(HttpSession session)
+    {
+        Integer id=(Integer)session.getAttribute("did");
+        String ans=new RDBMS_TO_JSON().generateJSON("select * from doctor where did='"+id+"'");
+        return ans;
+    }
+    @PostMapping("editdetail")
+ public String editdetail(@RequestParam String name,@RequestParam String contact,@RequestParam String speciality,@RequestParam String city,@RequestParam String latitude,@RequestParam String longitude,@RequestParam String start_time,@RequestParam String end_time,@RequestParam String slot_amount,@RequestParam String desc,@RequestParam String experience,@RequestParam String educ,HttpSession session)
+    {
+        
+        int sa = Integer.parseInt(slot_amount);
+        System.out.println("---------------------------");
+        
+        System.out.println(slot_amount);
+        
+        try {
+             Integer id=(Integer)session.getAttribute("did");
+            ResultSet rs=DBLoader.executeSQL("select * from doctor where did='"+id+"'" );
+            if(rs.next())
+            {
+                rs.moveToCurrentRow();
+                rs.updateString("dname", name);
+               
+                rs.updateString("dcity", city);
+                rs.updateString("dlatitude", latitude);
+                rs.updateString("dlongitude", longitude);
+                
+                rs.updateString("dstart_time", start_time);
+                rs.updateString("dend_time", end_time);
+                rs.updateInt("dslot_amount", sa);
+                rs.updateString("dcontact", contact);
+                rs.updateString("ddesc", desc);
+                rs.updateString("dexperience", experience);
+                rs.updateString("deducation", educ);
+                
+                
+                rs.updateRow();
+                return"Success";
+            }
+            else
+            {
+             
+               return "failed";
+            }
+        } 
+        catch (Exception ex) 
+        {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+        
+    }
 }
 
