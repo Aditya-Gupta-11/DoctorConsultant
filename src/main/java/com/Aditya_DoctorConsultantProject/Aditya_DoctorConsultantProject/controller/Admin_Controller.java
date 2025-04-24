@@ -1,0 +1,35 @@
+
+package com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class Admin_Controller 
+{
+     @GetMapping("/AdminLogin")
+     public String go()
+     {
+         return"AdminLogin";
+     }
+    @GetMapping("/AdminHome")
+     public String adminhome()
+     {
+         return"AdminHome";
+     }
+     @GetMapping("/AdminManageCities")
+     public String managecities()
+     {
+         return "AdminManageCities";
+     }
+      @GetMapping("/AdminManageSpecialities")
+     public String managespecialities()
+     {
+         return "AdminManageSpecialities";
+     }
+    @GetMapping("/AdminManageDoctor")
+    public String managaedoctor()
+    {
+        return "AdminManageDoctor";
+    }
+}

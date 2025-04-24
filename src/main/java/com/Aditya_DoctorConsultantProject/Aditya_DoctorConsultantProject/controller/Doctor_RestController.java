@@ -1,0 +1,173 @@
+package com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.controller;
+
+import com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.vmm.DBLoader;
+import com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.vmm.RDBMS_TO_JSON;
+import com.mysql.cj.protocol.ServerSessionStateController;
+import jakarta.servlet.http.HttpSession;
+import java.io.FileOutputStream;
+import java.sql.ResultSet;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+@RestController
+public class Doctor_RestController 
+{
+ @PostMapping("specialitylist")
+ public String specialitylist()
+ {
+     String ans=new RDBMS_TO_JSON().generateJSON("select * from speciality");
+     return ans;
+ }
+ @PostMapping("adddoctor")
+ public String adddoctor(@RequestParam String name,@RequestParam String contact,@RequestParam String email,@RequestParam String password,@RequestParam String confpass,@RequestParam String speciality,@RequestParam String city,@RequestParam String latitude,@RequestParam String longitude,@RequestParam String start_time,@RequestParam String end_time,@RequestParam String slot_amount,@RequestParam String desc,@RequestParam String experience,@RequestParam String educ,@RequestParam  MultipartFile photo )
+    {
+        System.out.println("In Rest Controller");
+        String projectPath= System.getProperty("user.dir");
+        String internalPath= "/src/main/resources/static";
+        String folderName= "/myUploads";
+        String orgName= "/" + photo.getOriginalFilename(); 
+        
+        int sp = Integer.parseInt(speciality);
+        int sa = Integer.parseInt(slot_amount);
+        System.out.println("---------------------------");
+        System.out.println(sp);
+        System.out.println(slot_amount);
+        
+        try {
+            ResultSet rs=DBLoader.executeSQL("select * from doctor where dname='"+name+"'" );
+            if(rs.next())
+            {
+                return "Failed";
+            }
+            else
+            {
+              FileOutputStream fos= new FileOutputStream(projectPath + internalPath + folderName + orgName);
+            
+                byte[] b1= photo.getBytes();
+
+                fos.write(b1);
+                fos.close();
+                rs.moveToInsertRow();
+                rs.updateString("dname", name);
+                rs.updateString("demail", email);
+                rs.updateString("dpass", password);
+                rs.updateInt("dspeciality", sp);
+                rs.updateString("dcity", city);
+                rs.updateString("dlatitude", latitude);
+                rs.updateString("dlongitude", longitude);
+                rs.updateString("dphoto", orgName);
+                rs.updateString("dstart_time", start_time);
+                rs.updateString("dend_time", end_time);
+                rs.updateInt("dslot_amount", sa);
+                rs.updateString("dcontact", contact);
+                rs.updateString("ddesc", desc);
+                rs.updateString("dexperience", experience);
+                rs.updateString("deducation", educ);
+                
+                
+                rs.insertRow();
+                return"Success";
+            }
+        } 
+        catch (Exception ex) 
+        {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+        
+    }
+  @PostMapping("/dlogin")
+    public String dlogin(@RequestParam String email2,@RequestParam String pass2,HttpSession session)
+    {
+        try {
+            ResultSet rs=DBLoader.executeSQL("select * from doctor where demail='"+email2+"' and dpass='"+pass2+"'");
+            if(rs.next())
+            {
+                int id=rs.getInt("did");
+                session.setAttribute("did", id);
+                return "Login Successfull";
+            }
+            else
+            {
+                return "Login Fail";
+            }
+        } 
+        catch (Exception ex) 
+        {
+            ex.printStackTrace();
+            return "exception";
+        }
+    }
+     @PostMapping("/addphoto")
+    public String addphoto(@RequestParam  MultipartFile Photo,@RequestParam String Desc,HttpSession session)
+    {
+        String projectPath= System.getProperty("user.dir");
+        String internalPath= "/src/main/resources/static";
+        String folderName= "/myUploads";
+        String orgName= "/" + Photo.getOriginalFilename(); 
+        try {
+            ResultSet rs=DBLoader.executeSQL("select * from photo");
+            if(rs.next())
+            {
+               
+            
+              FileOutputStream fos= new FileOutputStream(projectPath + internalPath + folderName + orgName);
+            
+                byte[] b1= Photo.getBytes();
+
+                fos.write(b1);
+                fos.close();
+                Integer id=(Integer)session.getAttribute("did");
+                rs.moveToInsertRow();
+                rs.updateString("photo", orgName);
+                rs.updateString("pdesc", Desc);
+                rs.updateInt("did", id);
+                rs.insertRow();
+                return"Added Successfully";
+            }
+            else{
+                return "Failed";
+            }
+        }
+        catch (Exception ex) 
+        {
+            ex.printStackTrace();
+            return "exception";
+        }
+        
+    }
+    @PostMapping("/showphoto")
+    public String showphoto()
+    {
+        String ans=new RDBMS_TO_JSON().generateJSON("select * from photo");
+        return ans;
+    }
+    @GetMapping("/deletephoto")
+    public String deletephoto(@RequestParam String pid)
+    {
+        try
+        {
+        ResultSet rs=DBLoader.executeSQL("select * from photo where pid ='"+pid+"'");
+        if(rs.next())
+        {
+            rs.deleteRow();
+            return"Success";
+        }
+        else
+        {
+            return "Not Found";
+        }
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            
+        }
+        return "exception";
+    }
+    
+}
+
