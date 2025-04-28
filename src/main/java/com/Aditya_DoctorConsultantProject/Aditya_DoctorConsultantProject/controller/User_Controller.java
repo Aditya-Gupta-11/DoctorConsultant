@@ -17,10 +17,10 @@ public class User_Controller
     {
         return "UserLogin";
     }
-    @GetMapping("/UserHome")
-    public String Userhome()
+    @GetMapping("/")
+    public String index()
     {
-        return "UserHome";
+        return "index";
     }
     
 }
