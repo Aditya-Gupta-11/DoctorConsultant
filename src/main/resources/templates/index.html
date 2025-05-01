@@ -1248,7 +1248,7 @@
             }
             function renderAsCity(ans2)
             {
-                console.log(ans2);
+                
                 var mainobj=JSON.parse(ans2);
                 var arr=mainobj["ans"];
                 
@@ -1261,19 +1261,19 @@
                     s+=`<div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
                         <div class="blog-item">
                         <div class="blog-top">
-                        <a href="blog-details.html">
+                        <a href="/UseShowSpeciality">
                         <img src=${filepath}>
                         </a>
                             </div>
                             <div class="blog-bottom">
                                 <h3>
-                                    <a href="blog-details.html">${arr[i].cityname}</a>
+                                    <a href="/UserShowSpeciality">${arr[i].cityname}</a>
                                 </h3>
                                 <p>${arr[i].citydesc}</p>
                                 <ul>
                                     <li>
-                                        <a href="blog-details.html">
-                                           See the doctor detail 
+                                        <a href="/UserShowSpeciality?city=${arr[i].cityname}">
+                                           See the Specialities 
                                             <i class="icofont-long-arrow-right"></i>
                                         </a>
                                     </li>
@@ -1290,6 +1290,17 @@
                 }
                 document.getElementById("showcard").innerHTML=s;
                
+            }
+            function getcity(cityname)
+            {
+                 var url="/getcity";
+                fetch(url,{method:"POST"})
+                       .then(response => response.text())
+                       .then(ans2 => renderAsCity2(ans3)); 
+            }
+            function renderAsCity2()
+            {
+                
             }
         </script>
 

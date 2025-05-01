@@ -22,5 +22,10 @@ public class User_Controller
     {
         return "index";
     }
+    @GetMapping("/UserShowSpeciality")
+    public String usershowspeciality()
+    {
+        return "UserShowSpeciality";
+    }
     
 }

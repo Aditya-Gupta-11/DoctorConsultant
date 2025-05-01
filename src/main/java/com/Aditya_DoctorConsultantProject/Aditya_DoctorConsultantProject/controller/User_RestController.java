@@ -2,6 +2,7 @@
 package com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.controller;
 
 import com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.vmm.DBLoader;
+import com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.vmm.RDBMS_TO_JSON;
 import jakarta.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
@@ -80,5 +81,18 @@ public class User_RestController
             ex.printStackTrace();
             return "exception";
         }
+    }
+    @PostMapping("/getcity")
+    public String getcity(@RequestParam String cityname, HttpSession session2)
+    {
+        String cn= cityname;
+        session2.setAttribute(cn, cityname);
+        return "success";
+    }
+    @PostMapping("/getspeciality")
+    public String getspeciality(@RequestParam String city)
+    {
+        String ans=new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT s.* FROM speciality s JOIN doctor d ON s.sname = d.dspecialityname WHERE d.dcity ='"+city+"' ");
+        return ans;
     }
 }
