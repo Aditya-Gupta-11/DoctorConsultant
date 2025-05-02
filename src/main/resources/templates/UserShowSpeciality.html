@@ -285,7 +285,6 @@
                                             </div>
                                         </div>-->
                                        
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -294,7 +293,8 @@
             </div>
         </div>
         
-        <div class="container">
+       <section class="doctors-area ptb-100">
+            <div class="container">
                 <div class="section-title">
                     
                 </div>
@@ -302,7 +302,6 @@
                     <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
                         <div class="doctor-item">
                             <div class="doctor-top">
-                                <img src="assets/img/home-one/location (1).jpg" id="cp" alt="Manage Speciality">
                                
                                 
                             </div>
@@ -318,6 +317,8 @@
                 </div>
               
             </div>
+        </section>
+    
         
         <!-- End Sign Up -->
 
@@ -489,11 +490,13 @@
                 {
                     var orgName=arr[i].sphoto;
                     var filepath="myUploads"+orgName;
-                    s=s+' <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">';
+                    s=s+' <div class="col-sm-4 col-lg-4 wow fadeInUp" data-wow-delay=".3s">';
                     s=s+' <div class="doctor-item">';
                     s=s+' <div class="doctor-top">';
                     s=s+' <img src=';
-                    s=s+ filepath +">";                   
+                    s=s+ filepath +">";
+                    s=s+`<a href="/UserShowDoctor?city=${arr[i].dcity}&sid=${arr[i].id}"> See the doctor</a>`;
+                    s+='</div>';
                     s=s+ '<div class="doctor-bottom">';
                     s=s+ '<h3 id="cn">';
                     s=s+arr[i].sname;

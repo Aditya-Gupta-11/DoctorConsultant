@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
     
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/doctor.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:22 GMT -->
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,68 +31,11 @@
         <!-- Theme Dark CSS -->
         <link rel="stylesheet" href="assets/css/theme-dark.css">
 
-        <title>Doctor Sign-up</title>
-        
-        <script>
-            
-            function adduser()
-            {
-               var fName=document.getElementById("fname").value;
-               var lName=document.getElementById("lname").value;
-               var name=fName + " " + lName;
-               var contact=document.getElementById("contact").value;
-               var email=document.getElementById("em").value;
-               var password=document.getElementById("pass").value;
-               var confpass=document.getElementById("pass2").value;
-               var address=document.getElementById("address").value;
-               var gender=document.getElementById("gender").value;
-               var dob=document.getElementById("dob").value;
-               var bloodgroup=document.getElementById("bg").value;
-               var photo=document.getElementById("photo").files[0];
-               
-               var formdata=new FormData();
-               formdata.append("name",name);
-               formdata.append("contact",contact);
-               formdata.append("email",email);
-               formdata.append("password",password);
-               formdata.append("confpass",confpass);
-               formdata.append("address",address);
-               formdata.append("gender",gender);
-               formdata.append("dob",dob);
-               formdata.append("bloodgroup",bloodgroup);
-               formdata.append("photo",photo);
-               
-               var url="/adduser";
-               
-               fetch(url,{method:"POST", body:formdata})
-                       .then(response => response.text())
-                       .then(ans => renderAsHtml(ans));
-            }
-              function renderAsHtml(ans)
-            {
-                if(ans === "Success")
-                {
-                  
-                    alert("Request Send Successfully");
-                }
-                if(ans==="Failed")
-                {
-                    alert("Request already Exist");
-                }
-                else
-                {
-                    alert(ans);
-                }
-                
-            }
-            
-            
-
-        </script>
+        <title>Medsev - Healthcare Clinic & Doctor HTML Template</title>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body >
+    <body onload="getdoctor()">
 
         <!-- Preloader -->
         <div class="loader">
@@ -106,7 +49,7 @@
             </div>
         </div>
         <!-- End Preloader -->
-        
+
         <!-- Header Top -->
         <div class="header-top">
             <div class="container">
@@ -122,9 +65,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d4bcb1b8b8bb94b9b1b0a7b1a2fab7bbb9">
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#6f070a0303002f020a0b1c0a19410c0002">
                                             <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="92faf7fefefdd2fff7f6e1f7e4bcf1fdff">[email&#160;protected]</span>
+                                            <span class="__cf_email__" data-cfemail="acc4c9c0c0c3ecc1c9c8dfc9da82cfc3c1">[email&#160;protected]</span>
                                         </a>
                                     </li>
                                     <li>
@@ -205,7 +148,7 @@
                                     <a href="about.html" class="nav-link">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle active">Pages</a>
+                                    <a href="#" class="nav-link dropdown-toggle">Pages</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a href="appointment.html" class="nav-link">Appointment</a>
@@ -217,7 +160,7 @@
                                             <a href="testimonials.html" class="nav-link">Testimonials</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link active">Sign Up</a>
+                                            <a href="sign-up.html" class="nav-link">Sign Up</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="login.html" class="nav-link">Login</a>
@@ -251,10 +194,10 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Doctor</a>
+                                    <a href="#" class="nav-link dropdown-toggle active">Doctor</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="doctor.html" class="nav-link">Doctor</a>
+                                            <a href="#" class="nav-link active">Doctor</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="doctor-details.html" class="nav-link">Doctor Details</a>
@@ -295,137 +238,65 @@
         </div>
         <!-- End Navbar Area -->
 
-        <!-- Sign Up -->
-        <div class="signup-area">
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 pl-0">
-                        <div class="signup-left">
-                            <img src="assets/img/signup-bg.jpg" alt="SignUp">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 ptb-100">
-                        <div class="signup-item">
-                            <div class="signup-head">
-                                <h2>User Sign-up</h2>
-                                <p>Already have an account? 
-                                    <a href="/UserLogin">Log In</a>
-                                </p>
-                            </div>
-                            <div class="signup-form">
-                                <form>
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control" id="fname" placeholder="First Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" id="lname" placeholder="Last Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Contact</label>
-                                                <input type="text" class="form-control" id="contact" placeholder="Contact">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>E-mail</label>
-                                                <input type="email" class="form-control" id="em" placeholder="Your Email">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Password</label>
-                                                <input type="password" class="form-control" id="pass" placeholder="Password">
-                                            </div>
-                                        </div>
-                                        
-                                         <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Confirm Password</label>
-                                                <input type="password" class="form-control" id="pass2" placeholder="Confirm Password">
-                                            </div>
-                                        </div>
-                                       
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Photo</label>
-                                                <input type="file" class="form-control" id="photo" placeholder="User Photo">
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Blood Group</label>
-                                                <input type="text" class="form-control" id="bg" placeholder="Blood Group">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-lg-6">
-                                         <div class="form-group" >
-                                            <label>Gender</label>
-                                            <select class="form-control" id="gender" >
-                                                <option>Choose Gender</option>
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                                <option>Other</option>
-                                                
-                                              </select>
-                                         </div>
-                                            </div>
-                                          <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Date Of Birth</label>
-                                                <input type="text" class="form-control" id="dob" placeholder="Date Of Birth">
-                                            </div>
-                                        </div>
-                                          
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <textarea  name="Address" id="address" placeholder="User Address " class="form-control" rows="5" cols="55"></textarea>
-                                            </div>
-                                        </div>
-                                         
-                                        
-                                       
-                                        
-                                       
-                                        
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                    <label class="form-check-label" for="gridCheck">
-                                                        Yes, I agree with all <a href="#">Terms & Conditions</a>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="text-center">
-                                                <button type="button" class="btn signup-btn" onclick="adduser()">Sign Up</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+        <!-- Page Title -->
+        <div class="page-title-area page-title-one">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="page-title-item">
+                        <h2>Meet Our Qualified Doctors</h2>
+                        <ul>
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li>
+                                <i class="icofont-simple-right"></i>
+                            </li>
+                            <li>Doctors</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Sign Up -->
+        <!-- End Page Title -->
+
+        <!-- Doctor Search -->
+        
+        <!-- End Doctor Search -->
+
+        <!-- Doctors -->
+        <section class="doctors-area doctors-area-two pt-100">
+            <div class="doctor-shape">
+                <img src="assets/img/doctor/2.png" alt="Shape">
+            </div>
+            <div class="container">
+                <div class="row justify-content-center" id="showdoctor">
+                    <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="doctor-item">
+                            <div class="doctor-top">
+                                <img src="assets/img/home-one/doctor/1.jpg" alt="Doctor">
+                               
+                            </div>
+                            <div class="doctor-bottom">
+                                <h3>
+                                    <a href="doctor-details.html">Dr. Babatunde</a>
+                                </h3>
+                                <span>Neurosurgeon</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        </div>
+                    </div>
+                    </section>
+        <!-- End Doctors -->
 
         <!-- Footer -->
-        <footer class="footer-two pb-70">
+        <footer class="pb-70">
+
+            <!-- Newsletter -->
+         
+            <!-- End Newsletter -->
+
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-6 col-lg-4">
@@ -435,8 +306,8 @@
                                 <ul>
                                     <li>
                                         <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#761f181019361b13121f0513005815191b"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6dbd3d2dfc5d3c098d5d9db">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#0e666b6262614e636b6a677d6b78206d6163"><span class="__cf_email__" data-cfemail="462e232a2a29062b23222f3523306825292b">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#4d24232b220d202829243e283b632e2220"><span class="__cf_email__" data-cfemail="e28b8c848da28f87868b918794cc818d8f">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#bcd4d9d0d0d3fcd1d9d8d5cfd9ca92dfd3d1"><span class="__cf_email__" data-cfemail="224a474e4e4d624f47464b5147540c414d4f">[email&#160;protected]</span></a>
                                     </li>
                                     <li>
                                         <i class="icofont-stock-mobile"></i>
@@ -566,8 +437,56 @@
         <script src="assets/js/jquery.appear.min.js"></script>
         <!-- Custom JS -->
         <script src="assets/js/custom.js"></script>
-        
+        <script>
+              const params = new URLSearchParams(window.location.search);
+              const city = params.get('city');
+              const sid=params.get('sid');
+              function getdoctor()
+            {
+                var url="/getdoctor";
+                var formdata=new FormData();
+                formdata.append("city",city);
+                formdata.append("sid",sid);
+                fetch(url,{method:"POST",body:formdata})
+                       .then(response => response.text())
+                       .then(ans2 => renderAsdoctor(ans2)); 
+                
+            }
+            function renderAsdoctor(ans2)
+            {
+               
+                
+                var mainobj=JSON.parse(ans2);
+                var arr=mainobj["ans"];
+                console.log(arr);
+                var s="";
+                for(var i=0;i<arr.length;i++)
+                {
+                    if(arr[i].dstatus==="accepted")
+                    {
+                         var orgName=arr[i].dphoto;
+                         var filepath="myUploads"+orgName;
+                        s+= `<div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
+                            <div class="doctor-item">
+                            <div class="doctor-top">
+                                <img src="${filepath}" alt="Doctor">
+                               
+                            </div>
+                             <div class="doctor-bottom">
+                                 <h3>
+                                     <a href="">${arr[i].dname}</a>
+                                </h3>
+                                <span>${arr[i].dspecialityname}</span>
+                             </div>
+                         </div>
+                       </div>`;
+                    }
+                }
+                document.getElementById("showdoctor").innerHTML=s;
+            }
+        </script>
+
     </body>
 
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/doctor.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:28 GMT -->
 </html>

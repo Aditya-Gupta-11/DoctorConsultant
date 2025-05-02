@@ -27,5 +27,10 @@ public class User_Controller
     {
         return "UserShowSpeciality";
     }
+    @GetMapping("/UserShowDoctor")
+    public String usershowdoctor()
+    {
+        return "UserShowDoctor";
+    }
     
 }
