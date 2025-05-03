@@ -22,7 +22,7 @@ public class Doctor_RestController
      return ans;
  }
  @PostMapping("adddoctor")
- public String adddoctor(@RequestParam String name,@RequestParam String contact,@RequestParam String email,@RequestParam String password,@RequestParam String confpass,@RequestParam String speciality,@RequestParam String city,@RequestParam String latitude,@RequestParam String longitude,@RequestParam String start_time,@RequestParam String end_time,@RequestParam String slot_amount,@RequestParam String desc,@RequestParam String experience,@RequestParam String educ,@RequestParam  MultipartFile photo )
+ public String adddoctor(@RequestParam String name,@RequestParam String contact,@RequestParam String email,@RequestParam String address,@RequestParam String password,@RequestParam String confpass,@RequestParam String speciality,@RequestParam String city,@RequestParam String latitude,@RequestParam String longitude,@RequestParam String start_time,@RequestParam String end_time,@RequestParam String slot_amount,@RequestParam String desc,@RequestParam String experience,@RequestParam String educ,@RequestParam  MultipartFile photo )
     {
         System.out.println("In Rest Controller");
         String projectPath= System.getProperty("user.dir");
@@ -35,6 +35,15 @@ public class Doctor_RestController
         System.out.println("---------------------------");
         System.out.println(sp);
         System.out.println(slot_amount);
+        String sname="";
+        try
+        {
+            ResultSet rs2=DBLoader.executeSQL("select * from speciality where id='"+speciality+"' ");
+            if(rs2.next())
+            {
+                sname=rs2.getString("sname");
+            }
+        
         
         try {
             ResultSet rs=DBLoader.executeSQL("select * from doctor where dname='"+name+"'" );
@@ -66,6 +75,8 @@ public class Doctor_RestController
                 rs.updateString("ddesc", desc);
                 rs.updateString("dexperience", experience);
                 rs.updateString("deducation", educ);
+                rs.updateString("dspecialityname", sname);
+                rs.updateString("daddress", address);
                 
                 
                 rs.insertRow();
@@ -78,6 +89,12 @@ public class Doctor_RestController
             return ex.toString();
         }
         
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return ex.toString();
+        }
     }
   @PostMapping("/dlogin")
     public String dlogin(@RequestParam String email2,@RequestParam String pass2,HttpSession session)

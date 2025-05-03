@@ -55,7 +55,9 @@
                var experience=document.getElementById("dexp").value;
                var educ=document.getElementById("deduc").value;
                var photo=document.getElementById("dphoto").files[0];
-               alert(speciality)
+               var address=document.getElementById("address").value;
+               
+               
                var formdata=new FormData();
                formdata.append("name",name);
                formdata.append("contact",contact);
@@ -73,6 +75,7 @@
                formdata.append("experience",experience);
                formdata.append("educ",educ);
                formdata.append("photo",photo);
+               formdata.append("address",address);
                
                var url="/adddoctor";
                
@@ -409,6 +412,12 @@
                                                 <label>Photo</label>
                                                 <input type="file" class="form-control" id="dphoto" placeholder="Doctor Photo">
                                                 
+                                            </div>
+                                        </div>
+                                         <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <textarea  name="Address" id="address" placeholder="Doctor Address " class="form-control" rows="5" cols="55"></textarea>
                                             </div>
                                         </div>
                                          <div class="col-lg-6">
