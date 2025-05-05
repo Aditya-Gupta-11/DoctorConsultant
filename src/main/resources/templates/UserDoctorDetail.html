@@ -331,7 +331,52 @@
         </div>
         </div>
         <!-- End Doctor Details -->
+        
+<div class="container">
+    <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="2"></button>
+        </div>
 
+        <!-- Slides -->
+        <div class="carousel-inner rounded">
+            <div class="carousel-item active">
+                <img src="myUploads/3.jpg" class="d-block w-100" alt="Beautiful Mountain">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Beautiful Mountain</h5>
+                    <p>A stunning view of a snow-capped mountain during sunset.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1432889490240-84df33d47091?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxiZWFjaHxlbnwwfDB8fHwxNzI0OTI2MzI1fDA&ixlib=rb-4.0.3&q=80&w=1080" class="d-block w-100" alt="Serene Beach">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Serene Beach</h5>
+                    <p>A peaceful beach with golden sands and crystal-clear water.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxfHxmb3Jlc3R8ZW58MHwwfHx8MTcyNDkyNjM0MXww&ixlib=rb-4.0.3&q=80&w=1080" class="d-block w-100" alt="Lush Forest">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Lush Forest</h5>
+                    <p>A dense forest with towering trees and vibrant green foliage.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#imageSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
         <!-- Appointment -->
         <div class="appointment-area-three">
             <div class="container-fluid p-0">
@@ -423,33 +468,7 @@
         <footer class="pb-70">
 
             <!-- Newsletter -->
-            <div class="newsletter-area">
-                <div class="container">
-                    <div class="row newsletter-wrap align-items-center">
-                        <div class="col-lg-7">
-                            <div class="newsletter-item">
-                                <h2>Join Our Newsletter</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="newsletter-item">
-                                <div class="newsletter-form">
-                                    <form class="newsletter-form" data-toggle="validator">
-                                        <input type="email" class="form-control" placeholder="Enter Your Email" name="EMAIL" required autocomplete="off">
-        
-                                        <button class="btn newsletter-btn" type="submit">
-                                            Subscribe
-                                        </button>
-        
-                                        <div id="validator-newsletter" class="form-result"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
             <!-- End Newsletter -->
 
             <div class="container">
@@ -619,7 +638,7 @@
                 {
                     var orgName=arr[i].dphoto;
                     var filepath="myUploads"+orgName;
-                    s+=` <div class="page-title-area page-title-three">
+                    s+=` <div class="page-title-area page-title-two">
             <div class="d-table">
                 <div class="d-table-cell">
                     <div class="page-title-item-two">
@@ -692,13 +711,21 @@
                                        var a=educ.split(",");
                                        for(var i=0;i<a.length;i++)
                                        {
-                                           s+=`<li>->${a[i]}</li>`;
+                                           s+=`<li>${a[i]}</li>`;
                                        }
                                        s+= `</ul>
                                     </div>
                                     <div class="doctor-details-biography">
                                         <h3>Experience</h3>
-                                      <p> ${arr[0].dexperience}</p>
+                                     <ul>`;
+                                      var exp=arr[0].dexperience;
+                                      var b=exp.split(".");
+                                      for(var i=0;i<b.length;i++)
+                                      {
+                                          s+=`<li> ${b[i]} </li>`;
+                                      }
+                                      s+=`</ul>
+                                     
                                     </div>
                                 </div>
                             </div>
