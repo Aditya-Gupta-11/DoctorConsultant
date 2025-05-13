@@ -38,12 +38,13 @@
         
         
         <script>
+              const params = new URLSearchParams(window.location.search);
+              const did=params.get('did');
+
+              
 
             function go() {
                 
-                const params = new URLSearchParams(window.location.search);
-              const did=params.get('did');
-
                 var s = document.getElementById("datepicker").value;
                 console.log(s);
                 
@@ -120,16 +121,17 @@
                 output += '</tr>';
 
                 output += '</table>';
-                output += '<input type="button" class="btn btn-primary form-control mt-2" value="Click on the button to pay the value" onclick="pay()"/>';
+                output += '<input type="button" class="btn btn-primary form-control mt-2" value="Proceed for Payment" onclick="pay()"/>';
                 document.getElementById("slot").innerHTML = output;
             }
 
             var allslots = '';
-            function pay() {
-
+            function pay() 
+            {
+                
                 var c = document.getElementsByName("c1");
                 var date = document.getElementById("datepicker").value;
-                var email = document.getElementById("display").innerText;
+                
                 console.log(c);
                 for (var i = 0; i < c.length; i++) {
 
@@ -137,7 +139,7 @@
                         allslots += c[i].value + ",";
                     }
                 }
-                window.location.href = "payment?date=" + date + "&email=" + email + "&total=" + total + "&slots=" + allslots + " ";
+                window.location.href = "/payment?date=" + date + "&did=" + did + "&total=" + total + "&slots=" + allslots + " ";
             }
 
         </script>

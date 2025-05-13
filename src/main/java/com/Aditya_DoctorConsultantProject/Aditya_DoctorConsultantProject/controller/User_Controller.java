@@ -42,4 +42,9 @@ public class User_Controller
     {
         return "UserBookAppointment";
     }
+    @GetMapping("/payment")
+    public String payment()
+    {
+        return "payment"; 
+    }
 }
