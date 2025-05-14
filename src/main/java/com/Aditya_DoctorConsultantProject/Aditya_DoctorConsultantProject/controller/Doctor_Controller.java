@@ -32,5 +32,9 @@ public class Doctor_Controller
  {
      return "DoctorEditDetail";
  }
-         
+ @GetMapping("/DoctorManageBookingApp")
+ public String doctorbookingl()
+ {
+     return "DoctorManageBookingApp";
+ }       
 }

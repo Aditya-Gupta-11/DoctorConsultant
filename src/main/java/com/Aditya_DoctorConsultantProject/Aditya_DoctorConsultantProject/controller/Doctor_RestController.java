@@ -239,5 +239,131 @@ public class Doctor_RestController
         }
         
     }
+ @PostMapping("/showbooking")
+ public String showbooking(HttpSession session)
+ {
+    Integer id = (Integer) session.getAttribute("did");
+    String ans= new RDBMS_TO_JSON().generateJSON("SELECT  * FROM booking JOIN booking_detail ON booking.booking_id = booking_detail.booking_id JOIN user ON booking.uemail = user.uemail where booking.did="+id+";");
+    return ans;
+ }
+  @PostMapping("/showbooking2")
+ public String showbooking2(HttpSession session)
+ {
+   Integer id = (Integer) session.getAttribute("did");
+        try {
+            ResultSet rs= DBLoader.executeSQL("SELECT  * FROM booking JOIN booking_detail ON booking.booking_id = booking_detail.booking_id JOIN user ON booking.uemail = user.uemail where booking.did="+id+";");
+
+            String ans = "";
+
+            StringBuilder json = new StringBuilder();
+            json.append("[");
+
+            int bid=-1;
+            while (rs.next()) {
+                
+                int booking_id= rs.getInt("booking_id");
+                String uname = rs.getString("uname");
+                String date = rs.getString("date");
+                String total_price = rs.getString("total_price");
+                String ugender = rs.getString("ugender");
+                String status = rs.getString("status");
+                String payment_type = rs.getString("payment_type");
+
+                try{
+                    ResultSet rs2= DBLoader.executeSQL("select * from booking_detail where booking_id="+booking_id);
+                }
+                catch(Exception ex) {
+                    return ex.toString();
+                }
+                if(bid!=booking_id) {
+                    
+                    bid=booking_id;
+
+                    json.append("{");
+                    json.append("\"uname\":\"").append(uname).append("\",");
+                    json.append("\"date\":\"").append(date).append("\",");
+                    json.append("\"total_price\":\"").append(total_price).append("\",");
+                    json.append("\"ugender\":\"").append(ugender).append("\",");
+                    json.append("\"status\":\"").append(status).append("\",");
+                    json.append("\"booking_id\":").append(booking_id).append(",");
+                    StringBuilder json2 = new StringBuilder();
+                    try {
+                        json2.append("[");
+                        ResultSet rs2 = DBLoader.executeSQL("select * from booking_detail where booking_id=" + booking_id);
+
+                        boolean first = true;
+                        while (rs2.next()) {
+                            String slot = rs2.getString("start_slot") + "-" + rs2.getString("end_slot");
+
+                            if (!first) {
+                                json2.append(", ");
+                            }
+                            json2.append("{");
+                            json2.append("\"slot\":\"").append(slot).append("\"");
+                            json2.append("}");
+                            first = false;
+                        }
+                        json2.append("]");
+                    }
+                    catch(Exception ex) {
+                        return ex.toString();
+                    }
+
+                    String slots= json2.toString();
+                    
+                    json.append("\"slot\":").append(slots).append(",");
+                    json.append("\"payment_type\":\"").append(payment_type);
+                    json.append("\"}");
+                    
+                    if(rs.next()) json.append(", ");
+                }
+            }
+
+            json.append("]");
+
+            System.out.println(json.toString());
+            ans= json.toString();
+            return ans;
+        }
+        catch(Exception ex) {
+            return ex.toString();
+        }
+
+ }
+ @PostMapping("/acceptbooking")
+    public String acceptbooking(@RequestParam int id) {
+        try {
+            ResultSet rs= DBLoader.executeSQL("select * from booking where did= '"+ id+"'");
+            if(rs.next()) {
+                rs.updateString("status", "accepted");
+                rs.updateRow();
+                return "success";
+            }
+            else {
+                return "failed";
+            }
+        }
+        catch(Exception ex) {
+            return ex.toString();
+        }
+    }
+    @PostMapping("/removebooking")
+    public String removebooking(@RequestParam int id) {
+        try {
+            ResultSet rs= DBLoader.executeSQL("select * from doctor where did= '"+ id +"'");
+            if(rs.next()) {
+                rs.updateString("status", "rejected");
+                rs.updateRow();
+                return "success";
+            }
+            else {
+                return "failed";
+            }
+        }
+        catch(Exception ex) {
+            return ex.toString();
+        }
+    }
 }
+
 

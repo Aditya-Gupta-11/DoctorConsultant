@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
-  
+    
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/service.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,139 +29,13 @@
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="assets/css/responsive.css">
         <!-- Theme Dark CSS -->
+        <link rel="stylesheet" href="assets/css/theme-dark.css">
 
-        <title>Payment</title>
+        <title>Medsev - Healthcare Clinic & Doctor HTML Template</title>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        
-        <!-- Title -->
-
-        <!--payment start-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="js/Razorpay.js" type="text/javascript"></script>
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-        <!--payment end-->
-
-        <script>
-             const params = new URLSearchParams(window.location.search);
-             const amount = params.get("total");
-            function paymentlogic(total)
-            {
-
-                var options = {
-                    "key": "rzp_test_96HeaVmgRvbrfT",
-                    "amount": total + "00",
-                    "name": "Heal Hub",
-                    "description": "",
-                    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOmghn1er2yRA0yXfMRmroSSpWEdAGNV5KHg&usqp=CAU",
-                    "handler": function (response) {
-
-                        if (response.razorpay_payment_id == "" || response.razorpay_payment_id == undefined) {
-
-                            window.location.href = "payment_action?status=failed";
-                            // paymentfail(authormobile,"Payment failed!");
-
-                            alert("Payment Failed")
-
-                        } else {
-                            //success
-                            makePayment('online');
-                            //payment success
-                            //call your book payment function here
-                        }
-                    },
-                    "prefill": {
-                        "name": "HealHub ",
-                        "email": ""
-                    },
-                    "notes": {
-                        "address": ""
-                    },
-                    "theme": {
-                        "color": "#F37254"
-                    },
-                    "modal": {
-                        "ondismiss": function () {
-                            $("#statusmodal").modal("show");
-                            document.getElementById("status").innerHTML = "Payment failed ! Try again";
-                        }
-                    }
-                };
-
-
-
-                var rzp1 = new Razorpay(options);
-                rzp1.on('payment.failed', function (response) {
-                    console.log("a2");
-                    console.log(response.error.code);
-
-                    alert("Payment Failed");
-
-                });
-                rzp1.open();
-            }
-
-        </script>
-        
-        
-        <script>
-            
-            function online()
-            {
-                paymentlogic(amount);
-            }
-            
-            function cash()
-            {
-                makePayment('cash');
-            }
-            function makePayment(type) {
-                const params = new URLSearchParams(window.location.search);
-                const date = params.get("date");
-                const v_email = params.get("did");
-                const amount = params.get("total");
-                const slots = params.get("slots");
-                const status = "pending";
-
-                const url = `/pay?date=${encodeURIComponent(date)}&did=${encodeURIComponent(v_email)}&amount=${encodeURIComponent(amount)}&slots=${encodeURIComponent(slots)}&type=${encodeURIComponent(type)}&status=${encodeURIComponent(status)}`;
-
-                fetch(url)
-                        .then(response => response.text())
-                        .then(ans => {
-                            if (ans.includes("success")) {
-                                Swal.fire(
-                                        'Success!',
-                                        'Your booking and payment were recorded successfully.',
-                                        'success'
-                                        ).then(()=>{
-                                            window.location.href="/";
-                                        }) ;
-                                    
-                            } else {
-                                Swal.fire(
-                                        'Error!',
-                                        'Something went wrong: ' + ans,
-                                        'error'
-                                        );
-                            }
-                        })
-                        .catch(error => {
-                            Swal.fire(
-                                    'Error!',
-                                    'Request failed: ' + error,
-                                    'error'
-                                    );
-                        });
-            }
-        </script>
-        
-        
     </head>
-    <body >
-
+    <body onload="showbooking()">
 
         <!-- Preloader -->
         <div class="loader">
@@ -190,9 +65,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d4bcb1b8b8bb94b9b1b0a7b1a2fab7bbb9">
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#e9818c858586a9848c8d9a8c9fc78a8684">
                                             <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="92faf7fefefdd2fff7f6e1f7e4bcf1fdff">[email&#160;protected]</span>
+                                            <span class="__cf_email__" data-cfemail="c8a0ada4a4a788a5adacbbadbee6aba7a5">[email&#160;protected]</span>
                                         </a>
                                     </li>
                                     <li>
@@ -273,7 +148,7 @@
                                     <a href="about.html" class="nav-link">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle active">Pages</a>
+                                    <a href="#" class="nav-link dropdown-toggle">Pages</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a href="appointment.html" class="nav-link">Appointment</a>
@@ -285,7 +160,7 @@
                                             <a href="testimonials.html" class="nav-link">Testimonials</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link active">Sign Up</a>
+                                            <a href="sign-up.html" class="nav-link">Sign Up</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="login.html" class="nav-link">Login</a>
@@ -308,10 +183,10 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Services</a>
+                                    <a href="#" class="nav-link dropdown-toggle active">Services</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="service.html" class="nav-link">Service</a>
+                                            <a href="#" class="nav-link active">Service</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="service-details.html" class="nav-link">Service Details</a>
@@ -362,120 +237,71 @@
             </div>
         </div>
         <!-- End Navbar Area -->
+
+        <!-- Page Title -->
         <div class="page-title-area page-title-four">
             <div class="d-table">
                 <div class="d-table-cell">
                     <div class="page-title-item">
-                        <h2>Make the Payment</h2>
+                        <h2>Manage Booking Appointments</h2>
                         <ul>
                             <li>
-                                <a href="/UserBookAppointment">Book Appointment</a>
+                                <a href="index.html">Home</a>
                             </li>
                             <li>
                                 <i class="icofont-simple-right"></i>
                             </li>
-                            <li>Payment</li>
+                            <li>Manage Booking Appointments</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- End Page Title -->
 
-        <!-- Sign Up -->
-        <div class="signup-area">
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-<!--                    <div class="col-lg-6 pl-0">
-                        <div class="signup-left">
-                            <img src="assets/img/signup-bg.jpg" alt="SignUp">
-                        </div>
-                    </div>-->
-
-                    <div class="col-lg-6 ptb-100">
-                        <div class="signup-item">
-                           
-                            <div class="signup-form">
-                                <form>
-                                   
-<!--                                       <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Your Email">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Confirm Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                    <label class="form-check-label" for="gridCheck">
-                                                        Yes, I agree with all <a href="#">Terms & Conditions</a>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>-->
-                                       
-                                </form>
+        <!-- Services -->
+      <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-bordered custom_table">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            
+                                            <th scope="col"> Patient Name</th>
+                                            
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Slots</th>
+                                            <th scope="col">Total Payment</th>
+                                            <th scope="col">Payment Method</th>
+                                            <th scope="col">Payment Status</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="showrequest" class="align-top">
+                                        
+                                    </tbody>
+                                </table>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         
-   <section class="expertise-area pb-70">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Select the Payment Method</h2   >
-                </div>
-              <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="expertise-item">
-                            <div class="row justify-content-center">
-                                <div class="col-sm-6 col-lg-6 wow fadeInUp" data-wow-delay=".3s">
-                                    <a href="#" onclick="cash()">
-                                        <div class="expertise-inner">
-                                            <i class="icofont-rupee"></i>
-                                            <h3>Cash</h3>
-                                            
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-sm-6 col-lg-6 wow fadeInUp" data-wow-delay=".5s">
-                                    <a href="#" onclick="online()">
-                                        <div class="expertise-inner">
-                                            <i class="icofont-pay"></i>
-                                            <h3>Online</h3>
-                                           </div>
-                                    </a>
-                                </div>
-                               
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="expertise-item">
-                            <div class="expertise-right">
-                                <img src="assets/img/home-one/6.jpg" alt="Expertise">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Sign Up -->
+      
 
         <!-- Footer -->
-        <footer class="footer-two pb-70">
+        <footer class="pb-70">
+
+           
+                      
+
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-6 col-lg-4">
@@ -485,8 +311,8 @@
                                 <ul>
                                     <li>
                                         <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#761f181019361b13121f0513005815191b"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6dbd3d2dfc5d3c098d5d9db">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#0e666b6262614e636b6a677d6b78206d6163"><span class="__cf_email__" data-cfemail="462e232a2a29062b23222f3523306825292b">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#b2dbdcd4ddf2dfd7d6dbc1d7c49cd1dddf"><span class="__cf_email__" data-cfemail="6b02050d042b060e0f02180e1d45080406">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#5038353c3c3f103d3534392335267e333f3d"><span class="__cf_email__" data-cfemail="e78f828b8b88a78a82838e948291c984888a">[email&#160;protected]</span></a>
                                     </li>
                                     <li>
                                         <i class="icofont-stock-mobile"></i>
@@ -617,66 +443,99 @@
         <!-- Custom JS -->
         <script src="assets/js/custom.js"></script>
         <script>
-             const params = new URLSearchParams(window.location.search);
-             const city = params.get('city');
-            function getspeciality()
+             function showbooking()
             {
-                var url="/getspeciality";
-                var formdata=new FormData();
-                formdata.append("city",city);
-                fetch(url,{method:"POST",body:formdata})
+                var url="/showbooking2";
+                fetch(url,{method:"POST"})
                        .then(response => response.text())
-                       .then(ans2 => renderAsSpeciality(ans2)); 
+                       .then(ans => renderBooking(ans)); 
                 
             }
-            function renderAsSpeciality(ans2)
+            function renderBooking(ans)
             {
                
+                var mainarr=JSON.parse(ans);
                 
-                var mainobj=JSON.parse(ans2);
-                var arr=mainobj["ans"];
+                console.log(ans);
                 
-                console.log(arr);
                 var s="";
-                var a="";
-                for(var i=0;i<arr.length;i++)
-                {
-                    if(arr[i].dstatus==="accepted")
-                    {
-                        if(a===arr[i].sname)
-                        {
-                    }
-                    else
-                    {
-                      a=arr[i].sname;
-                    var orgName=arr[i].sphoto;
-                    var filepath="myUploads"+orgName;
-                    s=s+' <div class="col-sm-4 col-lg-4 wow fadeInUp" data-wow-delay=".3s">';
-                    s=s+' <div class="doctor-item">';
-                    s=s+' <div class="doctor-top">';
-                    s=s+' <img src=';
-                    s=s+ filepath +">";
-                    s=s+`<a href="/UserShowDoctor?city=${arr[i].dcity}&sid=${arr[i].id}"> See the doctor</a>`;
-                    s+='</div>';
-                    s=s+ '<div class="doctor-bottom">';
-                    s=s+ '<h3 id="cn">';
-                    s=s+arr[i].sname;
-                    s=s+'</h3>';
-                    s=s+'</div>';
-                    s=s+'</div>';
-                    s=s+'</div>';
-                    
-            }
-        }
-                }
-                document.getElementById("showcard").innerHTML=s;
                 
+                for(var i=0;i<mainarr.length;i++)
+                {
+                    var arr=mainarr[i];
+                    
+                    s+='<tr>';
+                    s+='<td>';
+                    s+=arr.uname+'</td>';
+                    s+='<td>';
+                    s+=arr.ugender+'</td>';
+                    s+='<td>';
+                    s+=arr.date+'</td>';
+                    s+='<td>';
+                    s+=arr.start_slot  +'</td>';
+                    s+='<td>';
+                    s+=arr.total_price+'</td>';
+                    s+=`<td> `;
+                    s+=arr.payment_type+`</td><td>`;
+                    s+=arr.status +'</td>';
+                    s+='<td>';
+//                    s+=arr[i].dcity +'</td>';
+//                    s+='<td>';
+//                    s+=arr[i].dexperience+'</td>';
+//                    s+='<td>';
+//                    s+=arr[i].dcontact+'<br>';
+//                    s+=arr[i].demail+'</td>';
+//                    s+='<td>';
+
+//                if(arr[i].status==='accepted') {
+//                    s+=`<button type="button" disabled onclick="accept(${arr[i].did})" class="btn btn-success">Accept</button>`;
+//                }
+//                else {
+//                    s+=`<button type="button" onclick="accept(${arr[i].did})" class="btn btn-success">Accept</button>`;
+//                }
+//                s+='</td>';
+//                s+='<td>';
+//                if(arr[i].status==='rejected') {
+//                    s+=`<button type="button" disabled onclick="remove(${arr[i].did})" class="btn btn-danger">Reject</button>`;
+//                }
+//                else {
+//                    s+=`<button type="button" onclick="remove(${arr[i].did})" class="btn btn-danger">Reject</button>`;
+//                }
+//                s+='</td>';
+//                s+='</tr>';
+                }  
+                
+                document.getElementById("showrequest").innerHTML=s;
             }
             
+            function accept(id) {
+                                                var url="/acceptbooking";
+                                                var formData= new FormData();
+                                                formData.append("id", id);
+                                                fetch(url, {method: "POST", body: formData})
+                                                        .then(response => response.text())
+                                                        .then(ans => renderAccept(ans));
+                                            }
+                                            function renderAccept(ans) {
+                                                showbooking();
+                                                alert(ans);
+                                            }
+                                            
+                                            function remove(id) {
+                                                var url="/removebooking";
+                                                var formData= new FormData();
+                                                formData.append("id", id);
+                                                fetch(url, {method: "POST", body: formData})
+                                                        .then(response => response.text())
+                                                        .then(ans => renderRemove(ans));
+                                            }
+                                            function renderRemove(ans) {
+                                                showbooking();
+                                                alert(ans);
+                                            }
         </script>
-
 
     </body>
 
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/service.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
 </html>
