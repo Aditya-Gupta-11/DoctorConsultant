@@ -1,6 +1,7 @@
 
 package com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -23,28 +24,94 @@ public class User_Controller
         return "index";
     }
     @GetMapping("/UserShowSpeciality")
-    public String usershowspeciality()
+    public String usershowspeciality(HttpSession session)
     {
+        String uemail=(String) session.getAttribute("uemail");
+        if(uemail==null)
+        {
+            
+            return "redirect:/UserLogin";
+        }
+        else
+        {
         return "UserShowSpeciality";
     }
+    }
     @GetMapping("/UserShowDoctor")
-    public String usershowdoctor()
+    public String usershowdoctor(HttpSession session)
     {
+        String uemail=(String) session.getAttribute("uemail");
+        if(uemail==null)
+        {
+            
+            return "redirect:/UserLogin";
+        }
+        else
+        {
         return "UserShowDoctor";
     }
+        
+    }
     @GetMapping("/UserDoctorDetail")
-    public String userdoctordetail()
+    public String userdoctordetail(HttpSession session)
     {
+        String uemail=(String) session.getAttribute("uemail");
+        if(uemail==null)
+        {
+            
+            return "redirect:/UserLogin";
+        }
+        else
+        {
         return "UserDoctorDetail";
     }
+    }
        @GetMapping("/UserBookAppointment")
-    public String userbookappointment()
+    public String userbookappointment(HttpSession session)
     {
+        String uemail=(String) session.getAttribute("uemail");
+        if(uemail==null)
+        {
+            
+            return "redirect:/UserLogin";
+        }
+        else
+        {
         return "UserBookAppointment";
     }
+    }
     @GetMapping("/payment")
-    public String payment()
+    public String payment(HttpSession session)
     {
-        return "payment"; 
+        String uemail=(String) session.getAttribute("uemail");
+        if(uemail==null)
+        {
+            
+            return "redirect:/UserLogin";
+        }
+        else
+        {
+        return "payment";
+    }
+    }
+    @GetMapping("/UserManageAppointments")
+    public String usermanageappointment(HttpSession session)
+    {
+        String uemail=(String) session.getAttribute("uemail");
+        if(uemail==null)
+        {
+            
+            return "redirect:/UserLogin";
+        }
+        else
+        {
+        return "UserManageAppointments";
+    }
+    }
+    @GetMapping("/Logout")
+    public String logout(HttpSession session)
+    {
+        session.invalidate();
+        return "redirect:/";
     }
 }

@@ -225,5 +225,13 @@ public class User_RestController
             return ex.toString();
         }
     }
+    @PostMapping("/showuserbooking")
+    public String showuserbooking(HttpSession session)
+    {
+        String id =  (String) session.getAttribute("uemail");
+        String ans= new RDBMS_TO_JSON().generateJSON("SELECT  booking.*, doctor.dname, doctor.dspecialityname, doctor.dcontact,user.uid, user.uname FROM booking JOIN booking_detail ON booking.booking_id = booking_detail.booking_id JOIN doctor ON booking.did = doctor.did JOIN user ON booking.uemail = user.uemail where booking.uemail='"+id+"'");
+        return ans;
+  
+    }
     
 }

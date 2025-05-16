@@ -2,6 +2,7 @@ package com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.contro
 
 import com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.vmm.DBLoader;
 import com.Aditya_DoctorConsultantProject.Aditya_DoctorConsultantProject.vmm.RDBMS_TO_JSON;
+import jakarta.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 public class Admin_RestController 
 {
     @PostMapping("/alogin")
-    public String alogin(@RequestParam String email2,@RequestParam String pass2)
+    public String alogin(@RequestParam String email2,@RequestParam String pass2, HttpSession session)
     {
         try {
             ResultSet rs=DBLoader.executeSQL("select * from admin where email='"+email2+"' and password='"+pass2+"'");
             if(rs.next())
             {
+                session.setAttribute("email",email2 );
                 return "Login Successfull";
             }
             else

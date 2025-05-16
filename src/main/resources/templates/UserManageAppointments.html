@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
     
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/doctor.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:22 GMT -->
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/service.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,8 +34,12 @@
         <title>Medsev - Healthcare Clinic & Doctor HTML Template</title>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
-    <body onload="getdoctor()">
+    <body onload="showuserbooking()">
 
         <!-- Preloader -->
         <div class="loader">
@@ -49,7 +53,7 @@
             </div>
         </div>
         <!-- End Preloader -->
-
+        
         <!-- Header Top -->
         <div class="header-top">
             <div class="container">
@@ -65,9 +69,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#6f070a0303002f020a0b1c0a19410c0002">
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#e9818c858586a9848c8d9a8c9fc78a8684">
                                             <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="acc4c9c0c0c3ecc1c9c8dfc9da82cfc3c1">[email&#160;protected]</span>
+                                            <span class="__cf_email__" data-cfemail="c8a0ada4a4a788a5adacbbadbee6aba7a5">[email&#160;protected]</span>
                                         </a>
                                     </li>
                                     <li>
@@ -113,11 +117,11 @@
         <!-- End Navbar Area -->
 
         <!-- Page Title -->
-        <div class="page-title-area page-title-one">
+        <div class="page-title-area page-title-four">
             <div class="d-table">
                 <div class="d-table-cell">
                     <div class="page-title-item">
-                        <h2>Meet Our Qualified Doctors</h2>
+                        <h2>User Manage Appointments</h2>
                         <ul>
                             <li>
                                 <a href="index.html">Home</a>
@@ -125,51 +129,77 @@
                             <li>
                                 <i class="icofont-simple-right"></i>
                             </li>
-                            <li>Doctors</li>
+                            <li>User Manage Appointments</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End Page Title -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
 
-        <!-- Doctor Search -->
-        
-        <!-- End Doctor Search -->
+                <!-- Modal content-->
+                <div class="modal-content text-black" id="showslot">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Booked Slots</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
 
-        <!-- Doctors -->
-        <section class="doctors-area doctors-area-two pt-100">
-            <div class="doctor-shape">
-                <img src="assets/img/doctor/2.png" alt="Shape">
             </div>
-            <div class="container">
-                <div class="row justify-content-center" id="showdoctor">
-                    <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
-                        <div class="doctor-item">
-                            <div class="doctor-top">
-                                <img src="assets/img/home-one/doctor/1.jpg" alt="Doctor">
-                               
+        </div>
+
+        <!-- Services -->
+      <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-bordered custom_table">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            
+                                            <th scope="col"> Patient Name</th>
+                                            
+                                            <th scope="col">Doctor Name</th>
+                                            <th scope="col">Doctor Speciality</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Slots</th>
+                                            <th scope="col">Total Payment</th>
+                                            <th scope="col">Doctor Contact</th>
+                                            <th scope="col">Payment Method</th>
+                                            <th scope="col">Status</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody id="showrequest" class="align-top">
+                                        
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="doctor-bottom">
-                                <h3>
-                                    <a href="doctor-details.html">Dr. Babatunde</a>
-                                </h3>
-                                <span>Neurosurgeon</span>
-                            </div>
+                            
                         </div>
                     </div>
-                    
-                        </div>
-                    </div>
-                    </section>
-        <!-- End Doctors -->
+                </div>
+            </div>
+        </div>
+
+        
+      
 
         <!-- Footer -->
         <footer class="pb-70">
 
-            <!-- Newsletter -->
-         
-            <!-- End Newsletter -->
+           
+                      
 
             <div class="container">
                 <div class="row justify-content-center">
@@ -180,8 +210,8 @@
                                 <ul>
                                     <li>
                                         <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#4d24232b220d202829243e283b632e2220"><span class="__cf_email__" data-cfemail="e28b8c848da28f87868b918794cc818d8f">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#bcd4d9d0d0d3fcd1d9d8d5cfd9ca92dfd3d1"><span class="__cf_email__" data-cfemail="224a474e4e4d624f47464b5147540c414d4f">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#b2dbdcd4ddf2dfd7d6dbc1d7c49cd1dddf"><span class="__cf_email__" data-cfemail="6b02050d042b060e0f02180e1d45080406">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#5038353c3c3f103d3534392335267e333f3d"><span class="__cf_email__" data-cfemail="e78f828b8b88a78a82838e948291c984888a">[email&#160;protected]</span></a>
                                     </li>
                                     <li>
                                         <i class="icofont-stock-mobile"></i>
@@ -312,55 +342,94 @@
         <!-- Custom JS -->
         <script src="assets/js/custom.js"></script>
         <script>
-              const params = new URLSearchParams(window.location.search);
-              const city = params.get('city');
-              const sid=params.get('sid');
-              function getdoctor()
+             function showuserbooking()
             {
-                var url="/getdoctor";
-                var formdata=new FormData();
-                formdata.append("city",city);
-                formdata.append("sid",sid);
-                fetch(url,{method:"POST",body:formdata})
+                var url="/showuserbooking";
+                fetch(url,{method:"POST"})
                        .then(response => response.text())
-                       .then(ans2 => renderAsdoctor(ans2)); 
+                       .then(ans => renderBooking(ans)); 
                 
             }
-            function renderAsdoctor(ans2)
+            function renderBooking(ans)
             {
                
+                var mainarr=JSON.parse(ans);
+                var arr= mainarr["ans"];
+                console.log(ans);
                 
-                var mainobj=JSON.parse(ans2);
-                var arr=mainobj["ans"];
-                console.log(arr);
                 var s="";
+                
                 for(var i=0;i<arr.length;i++)
                 {
-                    if(arr[i].dstatus==="accepted")
-                    {
-                         var orgName=arr[i].dphoto;
-                         var filepath="myUploads"+orgName;
-                        s+= `<div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
-                            <div class="doctor-item">
-                            <div class="doctor-top">
-                                <img src="${filepath}" alt="Doctor">
-                               
-                            </div>
-                             <div class="doctor-bottom">
-                                 <h3>
-                                     <a href="/UserDoctorDetail?did=${arr[i].did}">${arr[i].dname}</a>
-                                </h3>
-                                <span>${arr[i].dspecialityname}</span>
-                             </div>
-                         </div>
-                       </div>`;
-                    }
-                }
-                document.getElementById("showdoctor").innerHTML=s;
+                    
+                    s+='<tr>';
+                    s+='<td>';
+                    s+=arr[i].uname+'</td>';
+                    s+='<td>';
+                    s+=arr[i].dname+'</td>';
+                    s+='<td>';
+                    s+=arr[i].dspecialityname+'</td>';
+                    s+='<td>';
+                    s+=arr[i].date+'</td>';
+                    s+='<td>';
+                    s+=`<button type="button" onclick="showSlots(${arr[i].booking_id})" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#myModal">Slots</button></td>`;
+                    s+='</td> <td>';
+                    s+=arr[i].total_price+'</td>';
+                    s+=`<td> `;
+                    s+=arr[i].dcontact+`</td>`;
+                    s+=`<td>`;
+                    s+=arr[i].payment_type+`</td>`;
+                    s+= `<td>`;
+                    s+=arr[i].status +'</td>';
+                   
+
+                s+='</tr>';
+                }  
+                
+                document.getElementById("showrequest").innerHTML=s;
             }
+            
+                                            
+                                           
+                                            function showSlots(bid)
+                                            {
+                                                  var url="/showSlots?bid="+bid;
+                                                fetch(url, {method: "GET"})
+                                                        .then(response => response.text())
+                                                        .then(ans => renderShow(ans));
+                                            }
+                                            function renderShow(ans)
+                                            {
+                                                console.log(ans);
+                                                 var mainobj=JSON.parse(ans);
+                                                 var obj=mainobj["ans"];
+                                                
+                                                var s="";
+                                                    s+=`<div class="modal-content" id="showslot">
+                                                        <div class="modal-header">
+                                                            
+                                                            <h4 class="modal-title">Booked Slots</h4>
+                                                        </div>
+                                                        <div class="modal-body">`;
+                                                         for(var i=0;i<obj.length;i++)
+                                                         {
+                                                             s+=`<h4 style= "color:black">
+                                                             Start Time: ${obj[i].start_slot}<br>
+                                                             End Time : ${obj[i].end_slot}    
+                                                             <br> 
+                                                            </h4>`;
+                                                                 
+                                                         }
+                                                       s+=` </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>`;
+                                                   document.getElementById("showslot").innerHTML=s;
+                                            }                                                
         </script>
 
     </body>
 
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/doctor.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:28 GMT -->
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/service.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
 </html>
