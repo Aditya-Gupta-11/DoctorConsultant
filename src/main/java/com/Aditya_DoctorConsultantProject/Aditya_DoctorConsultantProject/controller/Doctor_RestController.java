@@ -336,14 +336,38 @@ public String showSlots(@RequestParam int bid)
             if(rs.next()) {
                 rs.updateString("status", "accepted");
                 rs.updateRow();
-                return "success";
+                return "Success";
             }
             else {
-                return "failed";
+                return "Failed";
             }
         }
         catch(Exception ex) {
             return ex.toString();
+        }
+    }
+    @PostMapping("/dchangepass")
+    public String dchangepass(@RequestParam String email,@RequestParam String pass1,@RequestParam String pass2,@RequestParam String pass3,HttpSession session)
+    {
+        try {
+            ResultSet rs=DBLoader.executeSQL("select * from doctor where demail='"+email+"' and dpass='"+pass1+"'");
+            if(rs.next())
+            {
+                rs.moveToCurrentRow();
+                rs.updateString("dpass", pass2);
+                rs.updateRow();
+                session.removeAttribute("did");
+                return "Password Change Successfull";
+            }
+            else
+            {
+                return "Fail";
+            }
+        } 
+        catch (Exception ex) 
+        {
+            ex.printStackTrace();
+            return "exception";
         }
     }
 

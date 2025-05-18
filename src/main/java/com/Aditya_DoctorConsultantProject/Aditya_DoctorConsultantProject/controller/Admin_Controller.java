@@ -65,4 +65,19 @@ public class Admin_Controller
          return "AdminManageDoctor";
      }
     }
-}
+     @GetMapping("/AdminChangePassword")
+    public String changepassword(HttpSession session)
+    {
+       String email=(String) session.getAttribute("email");
+         if(email==null)
+         {
+             return "redirect:/AdminLogin";
+         }
+         else
+         {
+         return "AdminChangePassword";
+     }
+    }
+}  
+
+

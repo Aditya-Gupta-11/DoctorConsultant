@@ -70,6 +70,19 @@ public class Doctor_Controller
      return "DoctorManageBookingApp";
  }
  }    
+  @GetMapping("/DoctorChangePassword")
+ public String doctorchangepassword(HttpSession session)
+ {
+    Integer did=(Integer) session.getAttribute("did");
+     if(did==null)
+     {
+         return "redirect:/DoctorLogin";
+     }
+     else
+     {
+     return "DoctorChangePassword";
+ }
+ }    
  @GetMapping("/DoctorLogout")
  public String logout(HttpSession session)
  {

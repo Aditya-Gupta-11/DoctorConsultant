@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
     
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,11 +31,12 @@
         <!-- Theme Dark CSS -->
         <link rel="stylesheet" href="assets/css/theme-dark.css">
 
-        <title>Medsev - Healthcare Clinic & Doctor HTML Template</title>
+        <title>Manage The Specialities</title>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body>
+    <body onload="showcity()">
+
 
         <!-- Preloader -->
         <div class="loader">
@@ -65,9 +66,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#543c3138383b143931302731227a373b39">
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d4bcb1b8b8bb94b9b1b0a7b1a2fab7bbb9">
                                             <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="3e565b5252517e535b5a4d5b48105d5153">[email&#160;protected]</span>
+                                            <span class="__cf_email__" data-cfemail="92faf7fefefdd2fff7f6e1f7e4bcf1fdff">[email&#160;protected]</span>
                                         </a>
                                     </li>
                                     <li>
@@ -106,132 +107,108 @@
         </div>
         <!-- End Header Top -->
         
-         <!--Start Navbar Area--> 
-          <div th:replace="DoctorHeader :: header1">
+        <!-- Start Navbar Area -->
+         <div th:replace="UserHeader :: header">
             
         </div>
-         <!--End Navbar Area--> 
-       <div class="page-title-area page-title-four">
+        <!-- End Navbar Area -->
+        <div class="page-title-area page-title-four">
             <div class="d-table">
                 <div class="d-table-cell">
                     <div class="page-title-item">
-                        <h2>Doctor Home</h2>
+                        <h2>See the Cities</h2>
                         <ul>
-                            
-                           
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <i class="icofont-simple-right"></i>
+                            </li>
+                            <li>Cities</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div><!--
+        </div>
 
-         Login-->
-<!--     <div class="signup-area">
+        <!-- Sign Up -->
+        <div class="signup-area">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 pl-0">
-                        <div class="login-left">
-                            <img src="assets/img/login-bg.jpg" alt="Login">
+<!--                    <div class="col-lg-6 pl-0">
+                        <div class="signup-left">
+                            <img src="assets/img/signup-bg.jpg" alt="SignUp">
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="col-lg-6 ptb-100">
                         <div class="signup-item">
-                            <div class="signup-head">
-                                <h2>Admin Login</h2>
-                                
-                            </div>
+                           
                             <div class="signup-form">
                                 <form>
-                                    <div class="row justify-content-center">
-                                        
-                                        <div class="col-lg-6">
+                                   
+<!--                                       <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="email" id="em" class="form-control" placeholder="Your Email">
+                                                <input type="email" class="form-control" placeholder="Your Email">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="password" id="pass" class="form-control" placeholder="Password">
+                                                <input type="password" class="form-control" placeholder="Password">
                                             </div>
                                         </div>
-                                        
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Confirm Password">
+                                            </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <div class="forgot-pass">
-                                                    <a href="#">Forgot Password?</a>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                    <label class="form-check-label" for="gridCheck">
+                                                        Yes, I agree with all <a href="#">Terms & Conditions</a>
+                                                    </label>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="text-center">
-                                                <input type="button" class="btn signup-btn" onclick="login()" value="Login">
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </div>-->
+                                       
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
-        End Login-->
- <section class="doctors-area ptb-100">
+        </div>
+        
+       <section class="doctors-area ptb-100">
             <div class="container">
-                <div class="section-title">
-                    <h1 class="row justify-content-center text-center" style="color:black" ><b>Welcome Doctor</b></h1>
+<!--                <div class="section-title">
                     
-                </div>
-                <div class="row justify-content-center">
+                </div>-->
+                <div id="showcard" class="row justify-content-center">
                     <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
                         <div class="doctor-item">
-                            <div class="doctor-top">
-                                <img src="myUploads/mp.jpg" alt="Doctor">
-                                <a href="/DoctorManagePhotos">Manage Photos</a>
-                            </div>
+<!--                            <div class="doctor-top">
+                               
+                                
+                            </div>-->
                             <div class="doctor-bottom">
-                                <h3>
-                                    <a href="doctor-details.html">Manage Photos </a>
-                                    <span>Check the Photos</span>
-                                </h3>
+                                <h3 id="cn"></h3>
+                                
                                 
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".5s">
-                        <div class="doctor-item">
-                            <div class="doctor-top">
-                                <img src="assets/img/home-one/doctor/2.jpg" alt="Doctor">
-                                <a href="/DoctorEditDetail">Edit Detail</a>
-                            </div>
-                            <div class="doctor-bottom">
-                                <h3>
-                                    <a href="/DoctorEditDetail">Edit Detail</a>
-                                </h3>
-                                <span>You can edit your details here</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6   col-lg-4 wow fadeInUp" data-wow-delay=".7s">
-                        <div class="doctor-item">
-                            <div class="doctor-top">
-                                <img src="assets/img/home-one/doctor/3.jpg" alt="Doctor">
-                                <a href="/DoctorManageBookingApp">Manage Booking Appointment</a>
-                            </div>
-                            <div class="doctor-bottom">
-                                <h3>
-                                    <a href="/DoctorManageBookingApp">Manage Booking Appointment</a>
-                                </h3>
-                                <span>Check the Pending Bookings</span>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
                 </div>
-               
+              
             </div>
         </section>
+    
+        
+        <!-- End Sign Up -->
 
         <!-- Footer -->
          <div th:replace="Footer :: footer">
@@ -240,7 +217,7 @@
         <!-- End Footer -->
 
         <!-- Copyright -->
-         
+        
         <!-- End Copyright -->
 
 
@@ -268,37 +245,75 @@
         <script src="assets/js/jquery.appear.min.js"></script>
         <!-- Custom JS -->
         <script src="assets/js/custom.js"></script>
-        <script>
-            function login()
+       <script>
+            function showcity()
             {
-               var email=document.getElementById("em").value;
-               var pass=document.getElementById("pass").value;
-               
-               var formdata=new FormData();
-               formdata.append("email2",email);
-               formdata.append("pass2",pass);
-               
-               var url="/alogin";
-               
-               fetch(url,{method:"POST",body:formdata})
+                var url="/showcity";
+                fetch(url,{method:"POST"})
                        .then(response => response.text())
-                       .then(ans => renderAsHtml(ans));
+                       .then(ans2 => renderAsCity(ans2)); 
+                
             }
-            function renderAsHtml(ans)
+            function renderAsCity(ans2)
             {
-                if(ans === "Login Successfull")
+                
+                var mainobj=JSON.parse(ans2);
+                var arr=mainobj["ans"];
+                
+                console.log(arr);
+                var s="";
+                for(var i=0;i<arr.length;i++)
                 {
-                    window.location.href="/AdminHome";
+                    var orgName=arr[i].cityphoto;
+                    var filepath="myUploads"+orgName;
+                    s+=`<div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="blog-item">
+                        <div class="blog-top">
+                        <a href="/UserShowSpeciality?city=${arr[i].cityname}">
+                        <img src=${filepath}>
+                        </a>
+                            </div>
+                            <div class="blog-bottom">
+                                <h3>
+                                    <a href="/UserShowSpeciality?city=${arr[i].cityname}">${arr[i].cityname}</a>
+                                </h3>
+                                <p>${arr[i].citydesc}</p>
+                                <ul>
+                                    <li>
+                                        <a href="/UserShowSpeciality?city=${arr[i].cityname}">
+                                           See the Specialities 
+                                            <i class="icofont-long-arrow-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <i class="icofont-calendar"></i>
+                                        Jan 03, 2024
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>`
+
+                    
                 }
-                else
-                {
-                    alert(ans);
-                }
+                document.getElementById("showcard").innerHTML=s;
+               
             }
-            
+            function getcity(cityname)
+            {
+                 var url="/getcity";
+                fetch(url,{method:"POST"})
+                       .then(response => response.text())
+                       .then(ans2 => renderAsCity2(ans3)); 
+            }
+            function renderAsCity2()
+            {
+                
+            }
         </script>
+
 
     </body>
 
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
 </html>

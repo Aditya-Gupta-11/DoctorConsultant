@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
         <!-- Theme Dark CSS -->
         <link rel="stylesheet" href="assets/css/theme-dark.css">
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <title>Medsev - Healthcare Clinic & Doctor HTML Template</title>
 
@@ -107,72 +108,8 @@
         <!-- End Header Top -->
         
         <!-- Start Navbar Area -->
-        <div class="navbar-area sticky-top">
-            <!-- Menu For Mobile Device -->
-            <div class="mobile-nav">
-                <a href="index.html" class="logo">
-                    <img src="assets/img/logo-two.png" alt="Logo">
-                </a>
-            </div>
-
-            <!-- Menu For Desktop Device -->
-            <div class="main-nav">
-                <div class="container">
-                    <nav class="navbar navbar-expand-md navbar-light">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="assets/img/logo.png" alt="Logo">
-                        </a>
-                        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                  <li class="nav-item">
-                                    <a href="/" class="nav-link">Home</a>
-                                </li>
-                                 
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">User</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="/UserLogin" class="nav-link">User Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/UserSignup" class="nav-link">User Signup</a>
-                                        </li>
-                                        
-                                    </ul>
-                                </li>
-                                
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Doctor</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="/DoctorLogin" class="nav-link">Doctor Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/DoctorSignup" class="nav-link">Doctor Signup</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                
-                                <li class="nav-item">
-                                    <a href="/AdminLogin" class="nav-link">Admin</a>
-                                </li>
-                            </ul>
-                            <div class="nav-srh">
-                                <div class="search-toggle">
-                                    <button class="search-icon icon-search"><i class="icofont-search-1"></i></button>
-                                    <button class="search-icon icon-close"><i class="icofont-close"></i></button>
-                                </div>
-                                <div class="search-area">
-                                    <form>
-                                        <input type="text" class="src-input" id="search-terms" placeholder="Search here..." />
-                                        <button type="submit" name="submit" value="Go" class="search-icon"><i class="icofont-search-1"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
+        <div th:replace="UserHeader :: header">
+            
         </div>
         <!-- End Navbar Area -->
 
@@ -190,6 +127,9 @@
                         <div class="signup-item">
                             <div class="signup-head">
                                 <h2>User Login</h2>
+                                 <p>New User? 
+                                    <a href="/UserSignup">Sign-Up</a>
+                                </p>
                                 
                             </div>
                             <div class="signup-form">
@@ -227,124 +167,17 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
         <!-- End Login -->
 
         <!-- Footer -->
-        <footer class="footer-two pb-70">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="footer-item">
-                            <div class="footer-contact">
-                                <h3>Contact Us</h3>
-                                <ul>
-                                    <li>
-                                        <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d9b0b7bfb699b4bcbdb0aabcaff7bab6b4"><span class="__cf_email__" data-cfemail="b4dddad2dbf4d9d1d0ddc7d1c29ad7dbd9">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d3bbb6bfbfbc93beb6b7baa0b6a5fdb0bcbe"><span class="__cf_email__" data-cfemail="39515c55555679545c5d504a5c4f175a5654">[email&#160;protected]</span></a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-stock-mobile"></i>
-                                        <a href="tel:+07554332322">Call: +07 554 332 322</a>
-                                        <a href="tel:+236256256365">Call: +236 256 256 365</a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Market Street,<br> Victoria Canada
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-2">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Quick Links</h3>
-                                <ul>
-                                    <li>
-                                        <a href="about.html">About us</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog.html">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-details.html">Our Expertise</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">Faq</a>
-                                    </li>
-                                    <li>
-                                        <a href="doctor.html">Doctors</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact us</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Our Services</h3>
-                                <ul>
-                                    <li>
-                                        <a href="service-details.html">Dental Care</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Cardiology</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Hijama Therapy</a>
-                                    </li>
-                                    <li>
-                                       <a href="service-details.html">Massage Therapy</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Ambluance Sevices</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Medicine</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-feedback">
-                                <h3>Feedback</h3>
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="your_message" rows="5" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="text-left">
-                                        <button type="submit" class="btn feedback-btn">SUBMIT</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+         <div th:replace="Footer :: footer">
+            
+        </div>
         <!-- End Footer -->
 
         <!-- Copyright -->
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-item">
-                    <p>© <span>Medsev</span> is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBoostrap</a></p>
-                </div>
-            </div>
-        </div>
+        
         <!-- End Copyright -->
 
 
@@ -378,7 +211,16 @@
                var email=document.getElementById("em").value;
                var pass=document.getElementById("pass").value;
                
-               var formdata=new FormData();
+              if(!email || !pass)
+              {
+                  Swal.fire({
+                      icon:'warning',
+                      title:'Empty Fileds',
+                      text:'Please Fill all the fields'
+                  });
+              }
+              else{
+                   var formdata=new FormData();
                formdata.append("email2",email);
                formdata.append("pass2",pass);
                
@@ -387,18 +229,30 @@
                fetch(url,{method:"POST",body:formdata})
                        .then(response => response.text())
                        .then(ans => renderAsHtml(ans));
+              }
             }
             function renderAsHtml(ans)
             {
                 if(ans === "Login Successfull")
                 {
-                    alert("Login Successfull");
-                    window.location.href="/";
+                   Swal.fire({
+                       icon:'success',
+                       title:'Login Success',
+                       text:'Login has been Successfully Done'
+                   }).then((result) => {
+                       if(result .isConfirmed){
+                            window.location.href="/";
+                       }
+                   });
+                   
                 }
                 else
                 {
-                    
-                    alert(ans);
+                    Swal.fire({
+                       icon:'error',
+                       title:'Login Failed',
+                       text:'Please Enter The Credentials Properly'
+                   });
                 }
             }
             

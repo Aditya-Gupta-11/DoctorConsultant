@@ -206,4 +206,28 @@ public class Admin_RestController
             return ex.toString();
         }
     }
+     @PostMapping("/achangepass")
+    public String achangepass(@RequestParam String email,@RequestParam String pass1,@RequestParam String pass2,@RequestParam String pass3,HttpSession session)
+    {
+        try {
+            ResultSet rs=DBLoader.executeSQL("select * from admin where email='"+email+"' and password='"+pass1+"'");
+            if(rs.next())
+            {
+                rs.moveToCurrentRow();
+                rs.updateString("password", pass2);
+                rs.updateRow();
+                session.removeAttribute("email");
+                return "Password Change Successfull";
+            }
+            else
+            {
+                return "Fail";
+            }
+        } 
+        catch (Exception ex) 
+        {
+            ex.printStackTrace();
+            return "exception";
+        }
+    }
 }

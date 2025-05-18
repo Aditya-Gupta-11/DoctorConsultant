@@ -107,6 +107,12 @@ public class User_RestController
         String ans=new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT * FROM speciality s JOIN doctor d ON s.sname = d.dspecialityname WHERE d.dcity ='"+city+"' and s.id='"+sid+"' ");
         return ans;
     }
+     @PostMapping("/getdoctor1")
+    public String getdoctor1()
+    {
+        String ans=new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT * FROM speciality s JOIN doctor d ON s.sname = d.dspecialityname    ");
+        return ans;
+    }
     @PostMapping("/doctordetail")
     public String doctordetail(@RequestParam int did)
     {
@@ -232,6 +238,31 @@ public class User_RestController
         String ans= new RDBMS_TO_JSON().generateJSON("SELECT  booking.*, doctor.dname, doctor.dspecialityname, doctor.dcontact,user.uid, user.uname FROM booking JOIN booking_detail ON booking.booking_id = booking_detail.booking_id JOIN doctor ON booking.did = doctor.did JOIN user ON booking.uemail = user.uemail where booking.uemail='"+id+"'");
         return ans;
   
+    }
+     @PostMapping("/changepass")
+    public String changepass(@RequestParam String email,@RequestParam String pass1,@RequestParam String pass2,@RequestParam String pass3,HttpSession session)
+    {
+        try {
+            ResultSet rs=DBLoader.executeSQL("select * from user where uemail='"+email+"' and upass='"+pass1+"'");
+            if(rs.next())
+                
+            {
+                rs.moveToCurrentRow();
+                rs.updateString("upass", pass2);
+                rs.updateRow();
+                session.removeAttribute("uemail");
+                return "Password Change Successfull";
+            }
+            else
+            {
+                return "Fail";
+            }
+        } 
+        catch (Exception ex) 
+        {
+            ex.printStackTrace();
+            return "exception";
+        }
     }
     
 }

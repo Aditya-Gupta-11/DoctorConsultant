@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
         <!-- Theme Dark CSS -->
         <link rel="stylesheet" href="assets/css/theme-dark.css">
+       
 
         <title>Manage The Cities</title>
 
@@ -37,7 +38,7 @@
     </head>
     <body onload="showphoto()">
 
-
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Preloader -->
         <div class="loader">
             <div class="d-table">
@@ -112,8 +113,27 @@
             
         </div>
         <!-- End Navbar Area -->
+        <div class="page-title-area page-title-four">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="page-title-item">
+                        <h2>Manage Photos</h2>
+                        <ul>
+                            <li>
+                                <a href="/DoctorHome">Home</a>
+                            </li>
+                            <li>
+                                <i class="icofont-simple-right"></i>
+                            </li>
+                            <li>Manage Photos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Sign Up -->
+        
         <div class="signup-area">
             <div class="container-fluid">
                 <div class="row justify-content-center">
@@ -127,7 +147,7 @@
                         <div class="signup-item">
                             <div class="signup-head">
                                 <div class="row justify-content-center">
-                                <h1 class="row justify-content-center" style="color:darkblue" >Manage Photos</h1>
+                               <h1 class="row justify-content-center" style="color:darkblue" >Manage Photos</h1>    
                                 </div>
                             </div>
                             <div class="signup-form">
@@ -136,12 +156,14 @@
                                        
                                         <div class="col-lg-6">
                                             <div class="form-group">
+                                                <label>Choose Photo</label>
                                                 <input type="file" class="form-control" id="Photo" placeholder="Photo">
                                                 
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
+                                                 <label>Enter Description   </label>
                                                 <textarea id="pdesc" name=" Description" placeholder ="Description" class="form-control" rows="5" cols="55"></textarea>
                                             </div>
                                         </div>
@@ -220,120 +242,13 @@
         <!-- End Sign Up -->
 
         <!-- Footer -->
-        <footer class="footer-two pb-70">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="footer-item">
-                            <div class="footer-contact">
-                                <h3>Contact Us</h3>
-                                <ul>
-                                    <li>
-                                        <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#761f181019361b13121f0513005815191b"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6dbd3d2dfc5d3c098d5d9db">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#0e666b6262614e636b6a677d6b78206d6163"><span class="__cf_email__" data-cfemail="462e232a2a29062b23222f3523306825292b">[email&#160;protected]</span></a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-stock-mobile"></i>
-                                        <a href="tel:+07554332322">Call: +07 554 332 322</a>
-                                        <a href="tel:+236256256365">Call: +236 256 256 365</a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Market Street,<br> Victoria Canada
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-2">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Quick Links</h3>
-                                <ul>
-                                    <li>
-                                        <a href="about.html">About us</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog.html">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-details.html">Our Expertise</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">Faq</a>
-                                    </li>
-                                    <li>
-                                        <a href="doctor.html">Doctors</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact us</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Our Services</h3>
-                                <ul>
-                                    <li>
-                                        <a href="service-details.html">Dental Care</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Cardiology</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Hijama Therapy</a>
-                                    </li>
-                                    <li>
-                                       <a href="service-details.html">Massage Therapy</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Ambluance Sevices</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Medicine</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-feedback">
-                                <h3>Feedback</h3>
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="your_message" rows="5" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="text-left">
-                                        <button type="submit" class="btn feedback-btn">SUBMIT</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+         <div th:replace="Footer :: footer">
+            
+        </div>
         <!-- End Footer -->
 
         <!-- Copyright -->
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-item">
-                    <p>© <span>Medsev</span> is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBoostrap</a></p>
-                </div>
-            </div>
-        </div>
+        
         <!-- End Copyright -->
 
 
@@ -367,6 +282,16 @@
                
                var Photo=document.getElementById("Photo").files[0];
                var Desc=document.getElementById("pdesc").value;
+               if(!Photo || !Desc)
+               {
+                   Swal.fire({
+                      icon:'warning',
+                      title:'Empty Fileds',
+                      text:'Please Fill all the fields'
+                  });
+               }
+               else
+               {
                
                var formdata=new FormData();
                
@@ -379,6 +304,7 @@
                        .then(response => response.text())
                        .then(ans => renderAsHtml(ans));
             }
+        }
             function showphoto()
             {
                 var url="/showphoto";
@@ -432,14 +358,22 @@
                    if(ans3==="Success")
                    {
                        
-                       alert("Photo Deleted Successfully");
                        showphoto();
+                       Swal.fire({
+                       icon:'success',
+                       title:'Photo Deleted Successfully',
+                       
+                   });
                        
                    }
                    else if(ans3==="Not Found")
                    {
-                       alert("Photo Not Found");
-                   }
+                       Swal.fire({
+                       icon:'error',
+                       title:'Photo Not Found',
+                   })
+               }
+                
                    else
                    {
                      alert("Error Occurred");   
@@ -450,10 +384,23 @@
                 if(ans === "Added Successfully")
                 {
                    
-                    alert("Photo Added Successfully");
-                    showphoto();
+                   showphoto();
+                   Swal.fire({
+                       icon:'success',
+                       title:'Photo Added Successfully',
+                       
+                   });
                 }
                
+                else if(ans === "Failed")
+                {
+                    Swal.fire({
+                       icon:'error',
+                       title:'Photo Already Exist',
+                      
+                   }
+               )
+                }
                 else
                 {
                     alert(ans);

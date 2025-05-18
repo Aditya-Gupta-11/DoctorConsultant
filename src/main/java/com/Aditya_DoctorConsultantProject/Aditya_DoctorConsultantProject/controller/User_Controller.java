@@ -23,6 +23,22 @@ public class User_Controller
     {
         return "index";
     }
+    
+    @GetMapping("/UserShowCities")
+    public String usershowcities(HttpSession session)
+    {
+        String uemail=(String) session.getAttribute("uemail");
+        if(uemail==null)
+        {
+            
+            return "redirect:/UserLogin";
+        }
+        else
+        {
+        return "UserShowCities";
+    }
+    }
+    
     @GetMapping("/UserShowSpeciality")
     public String usershowspeciality(HttpSession session)
     {
@@ -106,6 +122,20 @@ public class User_Controller
         else
         {
         return "UserManageAppointments";
+    }
+    }
+    @GetMapping("/UserChangePassword")
+    public String userchangepassword(HttpSession session)
+    {
+        String uemail=(String) session.getAttribute("uemail");
+        if(uemail==null)
+        {
+            
+            return "redirect:/UserLogin";
+        }
+        else
+        {
+        return "UserChangePassword";
     }
     }
     @GetMapping("/Logout")

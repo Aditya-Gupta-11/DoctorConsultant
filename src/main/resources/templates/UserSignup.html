@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
         <!-- Theme Dark CSS -->
         <link rel="stylesheet" href="assets/css/theme-dark.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <title>Doctor Sign-up</title>
         
@@ -49,6 +50,48 @@
                var dob=document.getElementById("dob").value;
                var bloodgroup=document.getElementById("bg").value;
                var photo=document.getElementById("photo").files[0];
+                if(!name || !contact || !email || !password || !confpass || !gender || !dob || !bloodgroup||  !photo || !address)
+               {
+                   Swal.fire({
+                    icon: 'warning',
+                    title: 'Empty Fields!',
+                    text:'Please fill all the Fields',
+                    
+                });
+                return;
+               }
+               if (password !== confpass) 
+               {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Password and Confirm Password do not match!',
+                    
+                });
+                        return;
+                        }
+
+                        // 📧 Email validation
+                        if (!email.endsWith("@gmail.com")) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Email ',
+                              
+                            });
+                            return;
+                        }
+
+                        // 📱 Contact number validation
+                        var contactPattern = /^\d{10}$/;
+                         if (!contactPattern.test(contact)) 
+                        {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Contact Number',
+                                text: 'Contact number must be exactly 10 digits'
+                            });
+                             return;
+                        }
+                        
                
                var formdata=new FormData();
                formdata.append("name",name);
@@ -73,16 +116,24 @@
                 if(ans === "Success")
                 {
                   
-                    alert("Request Send Successfully");
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Request Sent Successfully',
+                   
+        });
                 }
                 if(ans==="Failed")
                 {
-                    alert("Request already Exist");
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Request Already Exist',
+                   
+        });
                 }
-                else
-                {
-                    alert(ans);
-                }
+//                else
+//                {
+//                    alert(ans);
+//                }
                 
             }
             
@@ -299,120 +350,13 @@
         <!-- End Sign Up -->
 
         <!-- Footer -->
-        <footer class="footer-two pb-70">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="footer-item">
-                            <div class="footer-contact">
-                                <h3>Contact Us</h3>
-                                <ul>
-                                    <li>
-                                        <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#761f181019361b13121f0513005815191b"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6dbd3d2dfc5d3c098d5d9db">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#0e666b6262614e636b6a677d6b78206d6163"><span class="__cf_email__" data-cfemail="462e232a2a29062b23222f3523306825292b">[email&#160;protected]</span></a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-stock-mobile"></i>
-                                        <a href="tel:+07554332322">Call: +07 554 332 322</a>
-                                        <a href="tel:+236256256365">Call: +236 256 256 365</a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Market Street,<br> Victoria Canada
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-2">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Quick Links</h3>
-                                <ul>
-                                    <li>
-                                        <a href="about.html">About us</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog.html">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-details.html">Our Expertise</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">Faq</a>
-                                    </li>
-                                    <li>
-                                        <a href="doctor.html">Doctors</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact us</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Our Services</h3>
-                                <ul>
-                                    <li>
-                                        <a href="service-details.html">Dental Care</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Cardiology</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Hijama Therapy</a>
-                                    </li>
-                                    <li>
-                                       <a href="service-details.html">Massage Therapy</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Ambluance Sevices</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Medicine</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-feedback">
-                                <h3>Feedback</h3>
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="your_message" rows="5" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="text-left">
-                                        <button type="submit" class="btn feedback-btn">SUBMIT</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+         <div th:replace="Footer :: footer">
+            
+        </div>
         <!-- End Footer -->
 
         <!-- Copyright -->
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-item">
-                    <p>© <span>Medsev</span> is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBoostrap</a></p>
-                </div>
-            </div>
-        </div>
+        
         <!-- End Copyright -->
 
 
