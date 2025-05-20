@@ -35,7 +35,7 @@
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body onload="showcity(),getdoctor()">
+    <body onload="showcity(),getdoctor(),sendmail()">
 
         <!-- Preloader -->
         <div class="loader">
@@ -51,58 +51,8 @@
         <!-- End Preloader -->
         
         <!-- Header Top -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-sm-9 col-lg-9">
-                        <div class="header-top-item">
-                            <div class="header-top-left">
-                                <ul>
-                                    <li>
-                                        <a href="tel:+07554332322">
-                                            <i class="icofont-ui-call"></i>
-                                            Call : +07 554 332 322
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#5d35383131321d3038392e382b733e3230">
-                                            <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="2e464b4242416e434b4a5d4b58004d4143">[email&#160;protected]</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Canada 
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3">
-                        <div class="header-top-item">
-                            <div class="header-top-right">
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/login/" target="_blank">
-                                            <i class="icofont-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/login/" target="_blank">
-                                            <i class="icofont-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                       <a href="https://www.pinterest.com/" target="_blank">
-                                            <i class="icofont-pinterest"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div th:replace="CommonHeaderTop :: headertop ">
+            
         </div>
         <!-- End Header Top -->
         
@@ -119,9 +69,9 @@
                     <div class="container">
                         <div class="banner-item">
                             <h1>Your Healthy Life is Our First Priority.</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+                            <p>We are committed to supporting you every step of the way. We believe that true happiness begins with good health, and our mission is to help you live a life full of energy, balance, and well-being. With care that feels like family and support you can rely on, we strive to make every day healthier than the last. From preventive care to personalized guidance, we're here to ensure that your journey towards a better, healthier you is smooth and stress-free — because your wellness isn't just important, it's everything. </p>
                             <div class="common-btn-two">
-                                <a href="/UserBookAppointment">Get Appointment</a>
+                                <a href="/UserShowDoctor">Get Appointment</a>
                                
                             </div>
                             <div class="banner-right">
@@ -139,6 +89,50 @@
             </div>
         </div>
         <!-- End Banner -->
+        <div class="counter-area counter-area-two">
+            <div class="container">
+                <div class="row counter-bg">
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="counter-item">
+                            <i class="icofont-patient-bed"></i>
+                            <h3>
+                                <span class="odometer" data-count="850">00</span>
+                            </h3>
+                            <p>Patients Beds</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="counter-item">
+                            <i class="icofont-people"></i>
+                            <h3>
+                                <span class="odometer" data-count="2500">00</span>
+                                <span class="target">+</span>
+                            </h3>
+                            <p>Happy Patients</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="counter-item">
+                            <i class="icofont-doctor-alt"></i>
+                            <h3>
+                                <span class="odometer" data-count="750">00</span>
+                            </h3>
+                            <p>Doctors  & Nurse</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="counter-item">
+                            <i class="icofont-badge"></i>
+                            <h3>
+                                <span class="odometer" data-count="18">00</span>
+                            </h3>
+                            <p>Year Experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
       <section class="blog-area pt-100 pb-70">
             <div class="container">
                 <div class="section-title-two">
@@ -407,8 +401,21 @@
                        </div>`;
                     }
                 }
-                document.getElementById("showdoctor").innerHTML=s;
+                document.getElementById("showdoctor").innerHTML=s;  
             }
+            
+            function sendmail()
+            {
+                    var url="/sendemail";
+                fetch(url)
+                        .then(response => response.text())
+                        .then(ans => renderAsHtml5(ans));
+            }
+            function renderAsHtml5(ans)
+            {
+                alert(ans);
+            }
+            
         </script>
 
     </body>

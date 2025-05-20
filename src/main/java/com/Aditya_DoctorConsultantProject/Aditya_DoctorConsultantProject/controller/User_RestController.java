@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.util.StringTokenizer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class User_RestController 
 {
+    @Autowired
+    public EmailSenderService email;
+    
+    
+    
     @PostMapping("adduser")
  public String adduser(@RequestParam String name,@RequestParam String contact,@RequestParam String email,@RequestParam String password,@RequestParam String confpass,@RequestParam String address,@RequestParam String gender,@RequestParam String dob,@RequestParam String bloodgroup,@RequestParam  MultipartFile photo )
     {
@@ -240,8 +246,9 @@ public class User_RestController
   
     }
      @PostMapping("/changepass")
-    public String changepass(@RequestParam String email,@RequestParam String pass1,@RequestParam String pass2,@RequestParam String pass3,HttpSession session)
+    public String changepass(@RequestParam String pass1,@RequestParam String pass2,@RequestParam String pass3,HttpSession session)
     {
+        String email=(String) session.getAttribute("uemail");
         try {
             ResultSet rs=DBLoader.executeSQL("select * from user where uemail='"+email+"' and upass='"+pass1+"'");
             if(rs.next())
@@ -264,5 +271,57 @@ public class User_RestController
             return "exception";
         }
     }
+    @GetMapping("/userAddReview")
+    public String userAddReview(@RequestParam int did, @RequestParam int rating, @RequestParam String comment, HttpSession session) {
+        String uemail = (String) session.getAttribute("uemail");
+        System.out.println(uemail);
+//        System.out.println(rating);
+        String ans = "";
+        try {
+            ResultSet rs = DBLoader.executeSQL("Select * from review_table");
+
+            rs.moveToInsertRow();
+            rs.updateInt("did", did);
+            rs.updateString("uemail", uemail);
+            rs.updateString("comment", comment);
+            rs.updateInt("rating", rating);
+            rs.insertRow();
+            ans = "success";
+
+        } catch (Exception e) {
+            ans = e.toString();
+        }
+
+        return ans;
+    }
+
+
+    @GetMapping("/userShowAverageRatings")
+    public String userShowAverageRatings(@RequestParam int did) {
+
+        // Assuming RDBMS_TO_JSON is available as a service or component
+        String ans = new RDBMS_TO_JSON().generateJSON("select avg(rating) as r1 from review_table where did='" + did + "' ");
+        System.out.println(ans);
+        return ans;
+
+    }
+
+    @GetMapping("/userShowRatings")
+    public String userShowRatings(@RequestParam int did) {
+
+        // Assuming RDBMS_TO_JSON is available as a service or component
+        String ans = new RDBMS_TO_JSON().generateJSON("select * from review_table where did='" + did + "' ");
+        System.out.println(ans);
+        return ans;
+
+    } 
     
+    
+    @GetMapping("/sendemail")   
+    public String sendemail()
+    {
+        this.email.sendSimpleEmail("adityagupta0852@gmail.com", "Hello Everyone this is email testing mode", "Email Testing");
+        return "success";
+    }
+
 }

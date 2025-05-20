@@ -347,10 +347,11 @@ public String showSlots(@RequestParam int bid)
         }
     }
     @PostMapping("/dchangepass")
-    public String dchangepass(@RequestParam String email,@RequestParam String pass1,@RequestParam String pass2,@RequestParam String pass3,HttpSession session)
+    public String dchangepass(@RequestParam String pass1,@RequestParam String pass2,@RequestParam String pass3,HttpSession session)
     {
+        Integer id=(Integer) session.getAttribute("did");
         try {
-            ResultSet rs=DBLoader.executeSQL("select * from doctor where demail='"+email+"' and dpass='"+pass1+"'");
+            ResultSet rs=DBLoader.executeSQL("select * from doctor where did='"+id+"' and dpass='"+pass1+"'");
             if(rs.next())
             {
                 rs.moveToCurrentRow();

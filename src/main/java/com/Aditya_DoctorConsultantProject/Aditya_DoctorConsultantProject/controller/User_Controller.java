@@ -144,4 +144,9 @@ public class User_Controller
         session.invalidate();
         return "redirect:/";
     }
+    @GetMapping("/AboutUs")
+    public String about()
+    {
+        return "AboutUs";
+    }
 }

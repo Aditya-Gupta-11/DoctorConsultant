@@ -207,8 +207,9 @@ public class Admin_RestController
         }
     }
      @PostMapping("/achangepass")
-    public String achangepass(@RequestParam String email,@RequestParam String pass1,@RequestParam String pass2,@RequestParam String pass3,HttpSession session)
+    public String achangepass(@RequestParam String pass1,@RequestParam String pass2,@RequestParam String pass3,HttpSession session)
     {
+           String email=(String) session.getAttribute("email");
         try {
             ResultSet rs=DBLoader.executeSQL("select * from admin where email='"+email+"' and password='"+pass1+"'");
             if(rs.next())
