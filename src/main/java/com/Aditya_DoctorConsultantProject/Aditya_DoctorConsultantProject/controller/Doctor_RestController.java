@@ -6,6 +6,7 @@ import com.mysql.cj.protocol.ServerSessionStateController;
 import jakarta.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class Doctor_RestController 
 {
+    @Autowired
+    public EmailSenderService email;
  @PostMapping("specialitylist")
  public String specialitylist()
  {
@@ -263,6 +266,7 @@ public String showbooking2(HttpSession session) {
             String uname = rs.getString("uname");
             String date = rs.getString("date");
             String total_price = rs.getString("total_price");
+            String demail = rs.getString("demail");
             String ugender = rs.getString("ugender");
             String status = rs.getString("status");
             String payment_type = rs.getString("payment_type");
@@ -279,6 +283,7 @@ public String showbooking2(HttpSession session) {
                 json.append("\"uname\":\"").append(uname).append("\",");
                 json.append("\"date\":\"").append(date).append("\",");
                 json.append("\"total_price\":\"").append(total_price).append("\",");
+                json.append("\"demail\":\"").append(demail).append("\",");
                 json.append("\"ugender\":\"").append(ugender).append("\",");
                 json.append("\"status\":\"").append(status).append("\",");
                 json.append("\"booking_id\":").append(booking_id).append(",");
@@ -371,6 +376,51 @@ public String showSlots(@RequestParam int bid)
             return "exception";
         }
     }
+    
+    @GetMapping("/dforgot")
+    public String dforgot(@RequestParam String email, @RequestParam String otp) {
+        try {
+            ResultSet rs = DBLoader.executeSQL("select * from doctor where demail='" + email + "'");
+            if (rs.next()) {
+                String body = "Your otp for login page is =" + otp;
+                String subject = "Login Authntication";
+                this.email.sendSimpleEmail(email, body, subject);
+                return "success";
+            } else {
+                return "fail";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+    }
+
+    @GetMapping("/dotpverify")
+    public String dotpverify(@RequestParam String email) {
+        try {
+            ResultSet rs = DBLoader.executeSQL("select * from doctor where demail='" + email + "'");
+            if (rs.next()) {
+                rs.moveToCurrentRow();
+                String pass = rs.getString("dpass");
+                String subject = "Your Account Password - JC Pawfect";
+                String body = "Dear Doctor,\n\n"
+                        + "As per your request, here is your account password:\n\n"
+                        + "Password: " + pass + "\n\n"
+                        + "Please do not share this password with anyone.\n"
+                        + "We recommend changing your password after login for better security.\n\n"
+                        + "Regards,\n"
+                        + "JC Pawfect Team";
+                this.email.sendSimpleEmail(email, body, subject);
+                return "success";
+            } else {
+                return "fail";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+    }
+    
 
 }
 

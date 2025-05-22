@@ -98,7 +98,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <div class="forgot-pass">
-                                                    <a href="#">Forgot Password?</a>
+                                                    <a href="#" onclick="aforgot()">Forgot Password?</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,6 +202,86 @@
                    });
                 }
             }
+            function aforgot()
+                {
+                var email8 = document.getElementById("em").value;
+                otp = Math.floor(1000 + Math.random() * 9000);
+
+                if (!email8)
+                {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Enter Email',
+                        text: 'Please Enter Email First'
+                    });
+                }
+                else 
+                {
+                    var url = "/aforgot?email=" + email8 + "&otp=" + otp;
+                    fetch(url)
+                            .then(response => response.text())
+                            .then(ans => renderAsHtml5(ans));
+                }
+            }
+        
+            
+            function renderAsHtml5(ans) {
+                if (ans === "success") {
+                    Swal.fire({
+                        title: 'Enter OTP',
+                        html:
+                                '<input type="text" id="otpInput" class="swal2-input" placeholder="Enter OTP">' +
+                                '<button onclick="averifyOtpFromModal()" class="swal2-confirm swal2-styled" style="margin-top: 10px;">Verify OTP</button>',
+                        showConfirmButton: false
+                    });
+
+
+                } else if (ans === "fail") {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Invalid Email',
+                        text: 'Email not registered for User'
+                    });
+                } else {
+                    alert(ans);
+                }
+            }
+
+            function averifyOtpFromModal() {
+                        var inp = document.getElementById("otpInput").value;
+                        if (otp == inp)
+                        {
+                            var email = document.getElementById("em").value;
+                            var url = "/aotpverify?email=" + email;
+                            fetch(url)
+                                    .then(response => response.text())
+                                    .then(ans => {
+                                        if (ans === "success")
+                                        {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Otp Success',
+                                                text: 'Please Check Your Email for the Password'
+                                            });
+
+                                        } else if (ans === "fail")
+                                        {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Otp Invalid',
+                                                text: 'Please Check Your Email for the OTP'
+                                            });
+                                        }
+                                    });
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Invalid Otp',
+                                text: 'Please Enter Valid Otp'
+                            });
+                        }
+
+    }
             
         </script>
 

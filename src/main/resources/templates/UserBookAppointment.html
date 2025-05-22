@@ -38,11 +38,20 @@
         
         
         <script>
-        
-              const params = new URLSearchParams(window.location.search);
-              const did=params.get('did');
-              
+            window.onload = function () 
+            {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+           const minDate = `${yyyy}-${mm}-${dd}`;
+            document.getElementById("datepicker").setAttribute("min", minDate);
+       
+            }   
+            const params = new URLSearchParams(window.location.search);
+            const did=params.get('did');
             function go() {
+             
                 
                 var s = document.getElementById("datepicker").value;
                 console.log(s);

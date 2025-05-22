@@ -34,6 +34,7 @@
         <title>Medsev - Healthcare Clinic & Doctor HTML Template</title>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body onload="showdoctor()">
 
@@ -84,7 +85,7 @@
         <!-- End Page Title -->
 
         <!-- Services -->
-        <div class="container">
+        <!--<div class="container">-->
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="card border-0 shadow">
@@ -117,7 +118,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!--</div>-->
 
 
 
@@ -208,7 +209,7 @@
                 if (arr[i].dstatus === 'accepted') {
                     s += `<button type="button" disabled onclick="accept(${arr[i].did})" class="btn btn-success">Accept</button>`;
                 } else {
-                    s += `<button type="button" onclick="accept(${arr[i].did})" class="btn btn-success">Accept</button>`;
+                    s += `<button type="button" onclick="accept(${arr[i].did},'${arr[i].demail}')" class="btn btn-success">Accept</button>`;
                 }
                 s += '</td>';
                 s += '<td>';
@@ -224,8 +225,10 @@
             document.getElementById("showrequest").innerHTML = s;
         }
 
-        function accept(id) {
+        function accept(id,email) {
+            usendmail(email);
             var url = "/accept";
+            
             var formData = new FormData();
             formData.append("id", id);
             fetch(url, {method: "POST", body: formData})
@@ -234,7 +237,11 @@
         }
         function renderAccept(ans) {
             showdoctor();
-            alert(ans);
+             Swal.fire({
+                       icon:'success',
+                       title:'Approved',
+                       
+                   });
         }
 
         function remove(id) {
@@ -245,10 +252,30 @@
                     .then(response => response.text())
                     .then(ans => renderRemove(ans));
         }
-        function renderRemove(ans) {
+        function renderRemove() {
             showdoctor();
-            alert(ans);
+             Swal.fire({
+                       icon:'error',
+                       title:'Rejected',
+                       
+                   });
         }
+        function usendmail(email)   
+            {
+//                    var email=document.getElementById("em").value;
+                    var body="Thanks for Sign-in to our Website\n\
+                   You can log-in using your credentials ";
+                    var sub="Doctor Sign Up";
+                    var url="/usendemail?email="+email+"&body="+body+"&sub="+sub;
+                    
+                fetch(url)
+                        .then(response => response.text())
+                        .then(ans => renderAsHtml5(ans));
+            }
+            function renderAsHtml5(ans)
+            {
+//                alert(ans);
+            }
         </script>
 
     </body>

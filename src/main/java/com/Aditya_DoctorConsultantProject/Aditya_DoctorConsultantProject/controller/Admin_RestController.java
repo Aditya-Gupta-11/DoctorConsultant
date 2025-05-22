@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class Admin_RestController 
 {
+    
+    @Autowired
+    public EmailSenderService email;
     @PostMapping("/alogin")
     public String alogin(@RequestParam String email2,@RequestParam String pass2, HttpSession session)
     {
@@ -231,4 +235,48 @@ public class Admin_RestController
             return "exception";
         }
     }
+     @GetMapping("/aforgot")
+    public String aforgot(@RequestParam String email, @RequestParam String otp) {
+        try {
+            ResultSet rs = DBLoader.executeSQL("select * from admin where email='" + email + "'");
+            if (rs.next()) {
+                String body = "Your otp for login page is =" + otp;
+                String subject = "Login Authntication";
+                this.email.sendSimpleEmail(email, body, subject);
+                return "success";
+            } else {
+                return "fail";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+    }
+
+    @GetMapping("/aotpverify")
+    public String aotpverify(@RequestParam String email) {
+        try {
+            ResultSet rs = DBLoader.executeSQL("select * from admin where email='" + email + "'");
+            if (rs.next()) {
+                rs.moveToCurrentRow();
+                String pass = rs.getString("password");
+                String subject = "Your Account Password - JC Pawfect";
+                String body = "Dear Doctor,\n\n"
+                        + "As per your request, here is your account password:\n\n"
+                        + "Password: " + pass + "\n\n"
+                        + "Please do not share this password with anyone.\n"
+                        + "We recommend changing your password after login for better security.\n\n"
+                        + "Regards,\n"
+                        + "JC Pawfect Team";
+                this.email.sendSimpleEmail(email, body, subject);
+                return "success";
+            } else {
+                return "fail";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+    }
+    
 }
