@@ -131,6 +131,7 @@
                         .then(response => response.text())
                         .then(ans => {
                             if (ans.includes("success")) {
+                                
                                 Swal.fire(
                                         'Success!',
                                         'Your booking and payment were recorded successfully.',
@@ -138,6 +139,7 @@
                                         ).then(()=>{
                                             window.location.href="/";
                                         }) ;
+                                        sendmail(v_email);
                                     
                             } else {
                                 Swal.fire(
@@ -155,11 +157,25 @@
                                     );
                         });
             }
+            function sendmail(id)
+        {
+            //console.log(email);
+            var body="Your have a new appointment request.";
+            var subject="Appointment Request";
+            var url="/dsendemail?body="+body+"&subject="+subject+"&id="+id;
+            fetch(url)
+                .then(response => response.text())
+                .then(ans => renderAsHtml5(ans));
+        }
+        function renderAsHtml5(ans)
+        {
+//          alert(ans);
+        }
         </script>
         
         
     </head>
-    <body >
+    <body  >
 
 
         <!-- Preloader -->

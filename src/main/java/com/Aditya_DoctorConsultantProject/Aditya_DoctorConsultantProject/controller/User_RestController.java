@@ -409,6 +409,23 @@ public class User_RestController
         this.email.sendSimpleEmail(email,body, sub);
         return "success";
     }
+    @GetMapping("/dsendemail")
+    public String dSendemail(@RequestParam String body, @RequestParam String subject, @RequestParam String id)
+    {
+        String email="";
+        try {
+            
+            ResultSet rs= DBLoader.executeSQL("select * from doctor where did="+id);
+            if(rs.next()) {
+                email= rs.getString("demail");
+            }
+        }
+        catch(Exception ex) {
+            return ex.toString();
+        }
+        this.email.sendSimpleEmail(email, body, subject);
+        return "success";
+    }
     
     
    

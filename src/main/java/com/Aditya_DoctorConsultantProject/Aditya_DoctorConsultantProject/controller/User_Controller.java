@@ -149,4 +149,9 @@ public class User_Controller
     {
         return "AboutUs";
     }
+      @GetMapping("/FAQ")
+    public String FAQ()
+    {
+        return "FAQ";
+    }
 }
